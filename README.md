@@ -3,4 +3,3 @@
 </h1><br>
 
 fire-flakes are a collection of [Nix flakes](https://nixos.wiki/wiki/Flakes) for a development environment.
-![fire-flakes_optimized]()
