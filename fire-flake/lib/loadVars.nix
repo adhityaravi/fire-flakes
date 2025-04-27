@@ -3,10 +3,9 @@
 let
   user = builtins.getEnv "USER";
   localVarsPath = ./../vars + "/${user}.nix";
-  privateVarsPath = if fireFlakeConfig != null then fireFlakeConfig.fireFlakeConfig.paths.vars + "/${user}.nix" else null;
+  privateVarsPath = if fireFlakeConfig != null then fireFlakeConfig.paths.vars + "/${user}.nix" else null;
 in
 
-# Priority: Local vars > Private repo vars > Error
 if builtins.pathExists localVarsPath then
   (builtins.trace "🔍 Loading local vars/${user}.nix" (import localVarsPath))
 
@@ -19,4 +18,4 @@ else
     📄 Please either:
       - Copy vars/template.nix to vars/${user}.nix and fill it manually
       - OR make sure your fire-flake-config repo is accessible and has vars/${user}.nix
-  '';
+  ''

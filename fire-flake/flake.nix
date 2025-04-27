@@ -10,23 +10,29 @@
       url = "github:nix-community/home-manager";
     };
 
-    # Optional: if enabled, an attempt will be made to load personal configurations from a git repo
-    #fire-flake-config = {
-    #  url = "git@github.com:adhityaravi/fire-flake-ivdi.git";
-    #  flake = true
-    #};
+    # Optional: if disabled, an attempt will be made to load local configuration file from the vars directory. 
+    # Note: Only ssh auth is tested.
+    fire-flake-config = {
+      url = "git+ssh://git@github.com/adhityaravi/fire-flake-config-ivdi.git";
+      flake = true;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: 
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
 
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
 
+    fireFlakeConfig = if inputs ? fire-flake-config then
+      inputs.fire-flake-config.fireFlakeConfig
+    else
+      null;
+
     # Load user variables
     userVars = import ./lib/loadVars.nix {
       inherit (nixpkgs) lib;
-      fireFlakeConfig = fire-flake-config;
+      fireFlakeConfig = fireFlakeConfig;
     };
 
   in
@@ -37,19 +43,18 @@
     };
 
     # Default home-manager configuration
-    homeConfigurations.${userVars.username} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./profiles/users/default/home.nix
-        {
-          home.username = userVars.username;
-          home.homeDirectory = userVars.homeDirectory;
-          home.stateVersion = userVars.stateVersion;
+    homeConfigurations = {
+      default = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-          custom.gitUserName = userVars.git.name;
-          custom.gitUserEmail = userVars.git.email;
-        }
-      ];
+        modules = [
+          ./profiles/users/default/home.nix
+        ];
+
+        extraSpecialArgs = {
+          inherit userVars;
+        };
+      };
     };
   };
 }
