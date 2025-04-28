@@ -53,10 +53,10 @@ You can find a template private configuration repository here: [fire-flake-confi
 
 | Folder | Description |
 |:-------|:------------|
-| `devShell/` | Development shells (default dev tools, linters, bootstraps) |
+| `dev-shell/` | Development shells (default dev tools, linters, bootstraps) |
 | `lib/` | Shared libraries (e.g., dynamic variable loader `loadVars.nix`) |
-| `home-modules/` | Home Manager modules (programs like Git, Neovim, etc.) |
-| `nixos-modules/` | (Planned) NixOS system configuration modules |
+| `modules/home-manager` | Home Manager modules (programs like Git, Neovim, etc.) |
+| `modules/nixos` | (Planned) NixOS system configuration modules |
 | `overlays/` | (Planned) Package overlays and custom package builds |
 | `profiles/hosts/` | Host-specific configs (e.g., `laptop/`, `server/`) |
 | `profiles/users/` | User-specific configs (e.g., `default/`) |
@@ -94,7 +94,7 @@ This will:
 After installation:
 
 ```bash
-home-manager switch --flake .#default
+home-manager --impure switch --flake .#default
 ```
 
 This will:
@@ -102,6 +102,8 @@ This will:
 - Set up user programs
 - Configure dotfiles
 - Apply system-wide user preferences
+
+**Note:** The `--impure` flag is required because the configuration uses the `$USER` environment variable to dynamically locate your specific vars file. See the [Home Manager documentation for --impure](https://nix-community.github.io/home-manager/index.html#sec-flakes-impure) for more details.
 
 Users are expected to provide their user-specific information (such as `username`, `email`, etc.) inside the `vars/` folder. This can be done by:
 
@@ -112,7 +114,7 @@ To update configuration if you change your private repo:
 
 ```bash
 nix flake update fire-flake-config
-home-manager switch --flake .#default
+home-manager --impure switch --flake .#default
 ```
 
 ---
@@ -143,13 +145,12 @@ home-manager switch --flake .#default
 
 **Contributions are welcome!** 🎉
 
-> As this is an opinionated setup for now, contributions around:
+> Contributions around:
 > - New devShell templates
 > - New Home Manager modules (programs)
 > - System-level expansion (NixOS modules)
 > - Secrets encryption (sops-nix integration)
-
-will be prioritized.
+> are appreciated!
 
 **Fork**, create a branch, and submit a pull request!
 

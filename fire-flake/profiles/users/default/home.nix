@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../../modules/homeManager/programs/git.nix
+    ../../../modules/home-manager/programs/git.nix
   ];
 
   home = {

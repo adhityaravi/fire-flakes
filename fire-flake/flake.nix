@@ -39,7 +39,7 @@
   {
     # Dev shells
     devShells.${system} = {
-      default = import ./devShell/default.nix { inherit pkgs; };
+      default = import ./dev-shell/default.nix { inherit pkgs; };
     };
 
     # Default home-manager configuration
