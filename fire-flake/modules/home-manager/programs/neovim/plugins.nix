@@ -1,24 +1,63 @@
 { pkgs }:
 
+let
+  treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
+    bash
+    go
+    python
+    terraform
+    nix
+    lua
+    json
+    yaml
+    markdown
+  ]);
+in
+
 with pkgs.vimPlugins; [
+
+  # Core dependencies
   plenary-nvim
   nvim-web-devicons
-  nvim-lualine-lualine
+  mini-nvim
+  which-key-nvim
+
+  # UI
+  lualine-nvim
   toggleterm-nvim
-  nvim-treesitter
+  alpha-nvim
+  persistence-nvim
+
+  # Syntax highlighting
+  treesitter
+
+  # LSP support
   nvim-lspconfig
+  mason-nvim
+  mason-lspconfig-nvim
+  lspkind-nvim
+
+  # Autocompletion
   nvim-cmp
   cmp-nvim-lsp
   cmp-buffer
   cmp-path
   cmp-cmdline
-  lspkind-nvim
-  mason-nvim
-  mason-lspconfig-nvim
+
+  # Fuzzy finder
   telescope-nvim
+  telescope-project-nvim
+  telescope-file-browser-nvim
+
+  # File explorer
   nvim-tree-lua
+
+  # Debugging
   nvim-dap
-  gitsigns-nvim
   nvim-dap-python
   nvim-dap-go
+
+  # Git integration
+  gitsigns-nvim
+  lazygit-nvim
 ]

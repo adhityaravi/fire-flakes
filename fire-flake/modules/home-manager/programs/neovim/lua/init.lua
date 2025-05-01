@@ -7,6 +7,9 @@ vim.opt.tabstop = 2
 vim.opt.smartindent = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 
 -- Load all plugin configs
 require("plugins.treesitter")
@@ -16,4 +19,8 @@ require("plugins.telescope")
 require("plugins.nvimtree")
 require("plugins.dap")
 require("plugins.git")
+require("plugins.alpha")
+require("plugins.persistence")
+require("plugins.lualine")
+require("plugins.which-key")
 require("plugins.others")

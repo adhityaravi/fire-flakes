@@ -21,15 +21,17 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      neovim
       jetbrains-mono
       ripgrep
       fd
       fzf
       unzip
+      lazygit
     ];
-
     fonts.fontconfig.enable = true;
+
+    # copy lua configs
+    xdg.configFile."nvim/lua".source = ./neovim/lua;
 
     programs.neovim = {
       enable = true;
@@ -46,6 +48,7 @@ in
         nodePackages.vscode-langservers-extracted
         nodePackages.dockerfile-language-server-nodejs
         nodePackages.yaml-language-server
+        lua-language-server
       ];
       plugins = pluginList ++ cfg.extraPlugins;
       extraLuaConfig = ''
