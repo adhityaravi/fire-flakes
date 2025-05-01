@@ -9,4 +9,5 @@ wk.setup({
 
 wk.add({
   { "<leader>h", group = "Git" },
+  { "<leader>e", group = "NvimTree"}
 })
