@@ -27,6 +27,7 @@ with pkgs.vimPlugins; [
   toggleterm-nvim
   alpha-nvim
   persistence-nvim
+  bufferline-nvim
 
   # Syntax highlighting
   treesitter
