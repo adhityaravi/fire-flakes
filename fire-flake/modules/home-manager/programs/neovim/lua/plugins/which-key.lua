@@ -10,5 +10,7 @@ wk.setup({
 wk.add({
   { "<leader>h", group = "Git" },
   { "<leader>e", group = "NvimTree"},
-  { "<leader>b", group = "Buffers"}
+  { "<leader>b", group = "Buffers"},
+  { "<leader>l", group = "LSP"},
+  { "<leader>f", group = "Telescope"},
 })
