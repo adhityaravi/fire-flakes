@@ -36,6 +36,7 @@ with pkgs.vimPlugins; [
   kanagawa-nvim
   oxocarbon-nvim
   everforest
+  gruvbox-nvim
 
   # Syntax highlighting
   treesitter

@@ -5,6 +5,7 @@ local themes = {
   "kanagawa-wave",
   "oxocarbon",
   "everforest",
+  "gruvbox",
 }
 
 local theme_file = vim.fn.stdpath("config") .. "/theme.txt"

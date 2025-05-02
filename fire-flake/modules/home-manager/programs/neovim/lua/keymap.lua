@@ -12,14 +12,14 @@ wk.setup({
 wk.add({
   { "<leader>g", group = "[g]it", icon = "󰊢"},
   { "<leader>gh", group = "[g]it[h]ub", icon = ""},
-  { "<leader>n", group = "[n]vim Tree", icon = "󰉓"},
+  { "<leader>n", group = "[n]vimTree", icon = "󰉓"},
   { "<leader>b", group = "[b]uffers", icon = "󰈚"},
   { "<leader>l", group = "[l]SP", icon = "󰒕"},
-  { "<leader>f", group = "Telescope [f]ind", icon = "󰭎"},
-  { "<leader>a", group = "[a]I Assist", icon = ""},
+  { "<leader>f", group = "Telescope[f]ind", icon = "󰭎"},
+  { "<leader>a", group = "[a]IAssist", icon = ""},
   { "<leader>t", group = "[t]oggles", icon = ""},
   { "<leader>d", group = "[d]ebug", icon = ""},
-  { "<leader>r", group = "find & [r]eplace", icon = ""},
+  { "<leader>r", group = "find&[r]eplace", icon = ""},
   { "<leader>q", group = "[q]uickfix", icon = ""},
 })
 
