@@ -37,14 +37,5 @@ require("bufferline").setup({
       end
     },
   },
-  highlights = require("catppuccin.groups.integrations.bufferline").get(),
 })
 
--- keybindings
-vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { desc = "Pick buffer" })
-vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { desc = "Close others" })
-vim.keymap.set("n", "<leader>bl", ":BufferLineMoveNext<CR>", { desc = "Move buffer right" })
-vim.keymap.set("n", "<leader>bh", ":BufferLineMovePrev<CR>", { desc = "Move buffer left" })

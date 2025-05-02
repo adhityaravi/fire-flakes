@@ -15,7 +15,6 @@ let
 in
 
 with pkgs.vimPlugins; [
-
   # Core dependencies
   plenary-nvim
   nvim-web-devicons
@@ -28,6 +27,14 @@ with pkgs.vimPlugins; [
   alpha-nvim
   persistence-nvim
   bufferline-nvim
+  smart-splits-nvim
+  # theme
+  catppuccin-nvim
+  rose-pine
+  tokyonight-nvim
+  kanagawa-nvim
+  oxocarbon-nvim
+  everforest
 
   # Syntax highlighting
   treesitter

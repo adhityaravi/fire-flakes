@@ -25,15 +25,15 @@
     enable = true;
 
     # Example: Add extra plugins
-    extraPlugins = with pkgs.vimPlugins; [
-      catppuccin-nvim
-    ];
+    #extraPlugins = with pkgs.vimPlugins; [
+    #  catppuccin-nvim
+    #];
 
     # Example: Add extra Lua config
-    extraLuaConfig = ''
-      vim.cmd("colorscheme catppuccin")
-      require("catppuccin").setup({})
-    '';
+    #extraLuaConfig = ''
+    #  vim.cmd("colorscheme catppuccin")
+    #  require("catppuccin").setup({})
+    #'';
   };
 
 }

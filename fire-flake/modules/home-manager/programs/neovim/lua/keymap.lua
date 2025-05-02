@@ -1,0 +1,84 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- which-key setup
+local wk = require("which-key")
+wk.setup({
+  preset = "helix",
+  win = {
+    border = "rounded",
+  }
+})
+wk.add({
+  { "<leader>g", group = "[g]it", icon = "󰊢"},
+  { "<leader>n", group = "[n]vimTree", icon = "󰉓"},
+  { "<leader>b", group = "[b]uffers", icon = "󰈚"},
+  { "<leader>l", group = "[l]SP", icon = "󰒕"},
+  { "<leader>f", group = "Telescope [f]ind", icon = "󰭎"},
+  { "<leader>a", group = "Copilot [a]I", icon = ""},
+  { "<leader>t", group = "[t]oggles", icon = ""},
+})
+
+-- Bufferline keymaps 
+vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { desc = "Pick buffer" })
+vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { desc = "Close others" })
+vim.keymap.set("n", "<leader>bl", ":BufferLineMoveNext<CR>", { desc = "Move buffer right" })
+vim.keymap.set("n", "<leader>bh", ":BufferLineMovePrev<CR>", { desc = "Move buffer left" })
+
+-- Copilot keymaps 
+vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" })
+vim.keymap.set("n", "<leader>ad", "<cmd>Copilot disable<CR>", { desc = "Copilot Disable" })
+vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "Copilot Status" })
+
+-- Git keymaps
+vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open Lazygit" })
+vim.keymap.set("n", "<leader>gS", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
+vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits" })
+
+-- Nvimtree keymaps
+vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+
+-- Smartsplit keymaps
+local ss = require("smart-splits")
+-- Resize splits
+vim.keymap.set("n", "<A-h>", ss.resize_left, { desc = "Resize split left" })
+vim.keymap.set("n", "<A-l>", ss.resize_right, { desc = "Resize split right" })
+vim.keymap.set("n", "<A-k>", ss.resize_up, { desc = "Resize split up" })
+vim.keymap.set("n", "<A-j>", ss.resize_down, { desc = "Resize split down" })
+-- Move between splits (acts like <C-w> direction)
+vim.keymap.set("n", "<C-h>", ss.move_cursor_left, { desc = "Move to left split" })
+vim.keymap.set("n", "<C-l>", ss.move_cursor_right, { desc = "Move to right split" })
+vim.keymap.set("n", "<C-k>", ss.move_cursor_up, { desc = "Move to upper split" })
+vim.keymap.set("n", "<C-j>", ss.move_cursor_down, { desc = "Move to lower split" })
+-- Move buffer between splits
+vim.keymap.set("n", "<leader>bh", ss.swap_buf_left, { desc = "Move buffer left" })
+vim.keymap.set("n", "<leader>bl", ss.swap_buf_right, { desc = "Move buffer right" })
+vim.keymap.set("n", "<leader>bk", ss.swap_buf_up, { desc = "Move buffer up" })
+vim.keymap.set("n", "<leader>bj", ss.swap_buf_down, { desc = "Move buffer down" })
+
+-- Telescope keymaps
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent files" })
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Grep in project" })
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Open buffers" })
+vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help tags" })
+vim.keymap.set("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
+vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics" })
+vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Jump to mark" })
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope project<CR>", { desc = "Projects" }) -- if using telescope-project
+vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<CR>", { desc = "Symbols (Treesitter)" })
+
+-- LSP
+vim.keymap.set("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP Definitions" })
+vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP References" })
+vim.keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP Implementations" })
+vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Document Symbols" })
+
+-- Toggles
+vim.keymap.set("n", "<leader>tc", ToggleTheme, { desc = "Toggle Color Theme" })
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
+

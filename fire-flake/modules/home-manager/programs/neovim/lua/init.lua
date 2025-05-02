@@ -7,9 +7,7 @@ vim.opt.tabstop = 2
 vim.opt.smartindent = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
+vim.opt.fillchars:append { vert = "│" } -- or "┃", "▕", etc.
 
 -- Load all plugin configs
 require("plugins.treesitter")
@@ -22,7 +20,9 @@ require("plugins.git")
 require("plugins.alpha")
 require("plugins.persistence")
 require("plugins.lualine")
-require("plugins.which-key")
 require("plugins.bufferline")
 require("plugins.copilot")
-require("plugins.others")
+require("plugins.toggleterm")
+require("plugins.smartsplits")
+require("plugins.theme")
+require("keymap")
