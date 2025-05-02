@@ -57,6 +57,7 @@ with pkgs.vimPlugins; [
   telescope-nvim
   telescope-project-nvim
   telescope-file-browser-nvim
+  nvim-spectre
 
   # File explorer
   nvim-tree-lua

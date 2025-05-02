@@ -11,13 +11,14 @@ wk.setup({
 })
 wk.add({
   { "<leader>g", group = "[g]it", icon = "󰊢"},
-  { "<leader>n", group = "[n]vimTree", icon = "󰉓"},
+  { "<leader>n", group = "[n]vim Tree", icon = "󰉓"},
   { "<leader>b", group = "[b]uffers", icon = "󰈚"},
   { "<leader>l", group = "[l]SP", icon = "󰒕"},
   { "<leader>f", group = "Telescope [f]ind", icon = "󰭎"},
-  { "<leader>a", group = "Copilot [a]I", icon = ""},
+  { "<leader>a", group = "[a]I Assist", icon = ""},
   { "<leader>t", group = "[t]oggles", icon = ""},
   { "<leader>d", group = "[d]ebug", icon = ""},
+  { "<leader>r", group = "find & [r]eplace", icon = ""},
   { "<leader>q", group = "[q]uickfix", icon = ""},
 })
 
@@ -64,7 +65,7 @@ vim.keymap.set("n", "<leader>bj", ss.swap_buf_down, { desc = "Move buffer down" 
 -- Telescope keymaps
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent files" })
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Grep in project" })
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Open buffers" })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help tags" })
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
@@ -94,14 +95,21 @@ vim.keymap.set("n", "<leader>qq", ":lua vim.diagnostic.setqflist()<CR>:copen<CR>
 
 
 -- Debugging
--- DAP: Debugging
+-- DAP
 vim.keymap.set("n", "<leader>dd", ":lua require'dap'.continue()<CR>", { silent = true, desc = "Start/Continue Debug" })
 vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true, desc = "Toggle Breakpoint" })
 vim.keymap.set("n", "<leader>do", ":lua require'dap'.step_over()<CR>", { silent = true, desc = "Step Over" })
 vim.keymap.set("n", "<leader>di", ":lua require'dap'.step_into()<CR>", { silent = true, desc = "Step Into" })
 vim.keymap.set("n", "<leader>du", ":lua require'dapui'.toggle()<CR>", { silent = true, desc = "Toggle DAP UI" })
--- Neotest: Testing 
+-- Neotest
 vim.keymap.set("n", "<leader>dt", ":lua require('neotest').run.run()<CR>", { silent = true, desc = "Run Nearest Test" })
 vim.keymap.set("n", "<leader>df", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", { silent = true, desc = "Run Test File" })
 vim.keymap.set("n", "<leader>do", ":lua require('neotest').output.open({ enter = true })<CR>", { silent = true, desc = "Open Test Output" })
 vim.keymap.set("n", "<leader>ds", ":lua require('neotest').summary.toggle()<CR>", { silent = true, desc = "Toggle Test Summary" })
+
+-- Spectre
+vim.keymap.set("n", "<leader>rr", function() require("spectre").open() end, { desc = "Replace in Files (Spectre)" })
+vim.keymap.set("n", "<leader>rw", function() require("spectre").open_visual({ select_word = true }) end, { desc = "Replace Word Under Cursor" })
+vim.keymap.set("v", "<leader>rw", function() require("spectre").open_visual() end, { desc = "Replace Selection" })
+vim.keymap.set("n", "<leader>rf", function() require("spectre").open_file_search() end, { desc = "Replace in Current File" })
+
