@@ -28,6 +28,7 @@ with pkgs.vimPlugins; [
   persistence-nvim
   bufferline-nvim
   smart-splits-nvim
+  leap-nvim
   # theme
   catppuccin-nvim
   rose-pine
