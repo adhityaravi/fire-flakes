@@ -65,6 +65,7 @@ with pkgs.vimPlugins; [
   nvim-dap
   nvim-dap-python
   nvim-dap-go
+  nvim-bqf
 
   # Git integration
   gitsigns-nvim

@@ -17,6 +17,7 @@ wk.add({
   { "<leader>f", group = "Telescope [f]ind", icon = "󰭎"},
   { "<leader>a", group = "Copilot [a]I", icon = ""},
   { "<leader>t", group = "[t]oggles", icon = ""},
+  { "<leader>q", group = "[q]uickfix", icon = ""},
 })
 
 -- Bufferline keymaps 
@@ -81,4 +82,12 @@ vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", { d
 vim.keymap.set("n", "<leader>tc", ToggleTheme, { desc = "Toggle Color Theme" })
 vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
+
+
+-- Quickfix
+vim.keymap.set("n", "<leader>qo", ":copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qc", ":cclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qn", ":cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qp", ":cprev<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qq", ":lua vim.diagnostic.setqflist()<CR>:copen<CR>", { noremap = true, silent = true })
 

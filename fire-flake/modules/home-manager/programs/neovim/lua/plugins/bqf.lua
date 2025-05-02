@@ -1,0 +1,21 @@
+require('bqf').setup({
+  auto_enable = true,
+  preview = {
+    win_height = 15,
+    win_vheight = 15,
+    delay_syntax = 80,
+    border_chars = { '│', '│', '─', '─', '┐', '┘', '└', '┌' },
+  },
+  func_map = {
+    open = '<CR>',
+    drop = 'o',
+    split = 's',
+    vsplit = 'v',
+    tab = 't',
+    toggle_mode = 'm',
+    toggle_preview = 'P',
+    preview_scroll_up = '<C-b>',
+    preview_scroll_down = '<C-f>',
+  },
+})
+
