@@ -47,6 +47,7 @@ in
         fzf
         unzip
         lazygit
+        gh
       ];
       plugins = pluginList ++ cfg.extraPlugins;
       extraLuaConfig = ''

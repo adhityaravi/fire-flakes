@@ -76,4 +76,5 @@ with pkgs.vimPlugins; [
   # Git integration
   gitsigns-nvim
   lazygit-nvim
+  octo-nvim
 ]

@@ -11,6 +11,7 @@ wk.setup({
 })
 wk.add({
   { "<leader>g", group = "[g]it", icon = "󰊢"},
+  { "<leader>gh", group = "[g]it[h]ub", icon = ""},
   { "<leader>n", group = "[n]vim Tree", icon = "󰉓"},
   { "<leader>b", group = "[b]uffers", icon = "󰈚"},
   { "<leader>l", group = "[l]SP", icon = "󰒕"},
@@ -40,6 +41,24 @@ vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "Copilot S
 vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open Lazygit" })
 vim.keymap.set("n", "<leader>gS", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
 vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits" })
+-- GitHub
+-- List & create issues/PRs
+vim.keymap.set("n", "<leader>ghi", ":Octo issue list<CR>", { desc = "GitHub: List Issues" })
+vim.keymap.set("n", "<leader>ghp", ":Octo pr list<CR>", { desc = "GitHub: List Pull Requests" })
+vim.keymap.set("n", "<leader>ghP", ":Octo pr create<CR>", { desc = "GitHub: Create Pull Request" })
+vim.keymap.set("n", "<leader>ghc", ":Octo pr checkout<CR>", { desc = "GitHub: Checkout PR" })
+-- Review actions
+vim.keymap.set("n", "<leader>ghs", ":Octo review start<CR>", { desc = "GitHub: Start Review" })
+vim.keymap.set("n", "<leader>gha", ":Octo review approve<CR>", { desc = "GitHub: Approve PR" })
+vim.keymap.set("n", "<leader>ghr", ":Octo review request_changes<CR>", { desc = "GitHub: Request Changes" })
+vim.keymap.set("n", "<leader>ghm", ":Octo review comment<CR>", { desc = "GitHub: Add Review Comment" })
+vim.keymap.set("n", "<leader>ghS", ":Octo review submit<CR>", { desc = "GitHub: Submit Review" })
+-- Metadata management (labels, reviewers, assignees)
+vim.keymap.set("n", "<leader>ghl", ":Octo label add<CR>", { desc = "GitHub: Add Label" })
+vim.keymap.set("n", "<leader>ghu", ":Octo reviewer add<CR>", { desc = "GitHub: Add Reviewer" })
+vim.keymap.set("n", "<leader>ghg", ":Octo assignee add<CR>", { desc = "GitHub: Add Assignee" })
+-- Reactions
+vim.keymap.set("n", "<leader>ghh", ":Octo reaction add +1<CR>", { desc = "GitHub: Add 👍 Reaction" })
 
 -- Nvimtree keymaps
 vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
