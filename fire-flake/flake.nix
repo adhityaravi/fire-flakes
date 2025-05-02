@@ -3,11 +3,12 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
+      url = "github:NixOS/nixpkgs/nixos-24.11";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Optional: if disabled, an attempt will be made to load local configuration file from the vars directory. 
@@ -60,8 +61,7 @@
         };
       };
 
-     # Canonical charming configuration
-     
+     # Canonical charming configuration 
     };
   };
 }
