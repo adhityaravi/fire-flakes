@@ -65,6 +65,11 @@ with pkgs.vimPlugins; [
   nvim-dap
   nvim-dap-python
   nvim-dap-go
+  nvim-dap-ui
+  neotest
+  neotest-go
+  neotest-python
+  neotest-plenary
   nvim-bqf
 
   # Git integration

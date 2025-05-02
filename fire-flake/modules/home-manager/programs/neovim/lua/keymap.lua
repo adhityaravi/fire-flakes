@@ -17,6 +17,7 @@ wk.add({
   { "<leader>f", group = "Telescope [f]ind", icon = "󰭎"},
   { "<leader>a", group = "Copilot [a]I", icon = ""},
   { "<leader>t", group = "[t]oggles", icon = ""},
+  { "<leader>d", group = "[d]ebug", icon = ""},
   { "<leader>q", group = "[q]uickfix", icon = ""},
 })
 
@@ -91,3 +92,16 @@ vim.keymap.set("n", "<leader>qn", ":cnext<CR>", { noremap = true, silent = true 
 vim.keymap.set("n", "<leader>qp", ":cprev<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qq", ":lua vim.diagnostic.setqflist()<CR>:copen<CR>", { noremap = true, silent = true })
 
+
+-- Debugging
+-- DAP: Debugging
+vim.keymap.set("n", "<leader>dd", ":lua require'dap'.continue()<CR>", { silent = true, desc = "Start/Continue Debug" })
+vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true, desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>do", ":lua require'dap'.step_over()<CR>", { silent = true, desc = "Step Over" })
+vim.keymap.set("n", "<leader>di", ":lua require'dap'.step_into()<CR>", { silent = true, desc = "Step Into" })
+vim.keymap.set("n", "<leader>du", ":lua require'dapui'.toggle()<CR>", { silent = true, desc = "Toggle DAP UI" })
+-- Neotest: Testing 
+vim.keymap.set("n", "<leader>dt", ":lua require('neotest').run.run()<CR>", { silent = true, desc = "Run Nearest Test" })
+vim.keymap.set("n", "<leader>df", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", { silent = true, desc = "Run Test File" })
+vim.keymap.set("n", "<leader>do", ":lua require('neotest').output.open({ enter = true })<CR>", { silent = true, desc = "Open Test Output" })
+vim.keymap.set("n", "<leader>ds", ":lua require('neotest').summary.toggle()<CR>", { silent = true, desc = "Toggle Test Summary" })
