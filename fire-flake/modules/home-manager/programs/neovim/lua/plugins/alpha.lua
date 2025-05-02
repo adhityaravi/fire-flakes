@@ -18,7 +18,10 @@ dashboard.section.header.val = {
 	"       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
 	"                                   ",
   "                                   ",
-  "      powered by fire-flake 🔥     ",
+  "     powered by fire-flake 🔥      ",
+  "                                   ",
+  "                                   ",
+  "                                   ",
 }
 
 dashboard.section.buttons.val = {
@@ -33,7 +36,16 @@ dashboard.section.buttons.val = {
 
 dashboard.section.footer.val = function()
     local v = vim.version()
-    return string.format("⚙  Neovim v%d.%d.%d  |  %s", v.major, v.minor, v.patch, os.date("%A, %d %B %Y"))
+    return {
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      string.format("⚙  Neovim v%d.%d.%d  |  %s", v.major, v.minor, v.patch, os.date("%A, %d %B %Y")),
+      " ",
+    }
 end
 
 dashboard.opts.opts.noautocmd = true
