@@ -20,14 +20,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      jetbrains-mono
-      ripgrep
-      fd
-      fzf
-      unzip
-      lazygit
-    ];
     fonts.fontconfig.enable = true;
 
     # copy lua configs
@@ -49,6 +41,12 @@ in
         nodePackages.dockerfile-language-server-nodejs
         nodePackages.yaml-language-server
         lua-language-server
+        jetbrains-mono
+        ripgrep
+        fd
+        fzf
+        unzip
+        lazygit
       ];
       plugins = pluginList ++ cfg.extraPlugins;
       extraLuaConfig = ''

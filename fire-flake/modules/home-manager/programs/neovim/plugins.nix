@@ -44,6 +44,7 @@ with pkgs.vimPlugins; [
   cmp-buffer
   cmp-path
   cmp-cmdline
+  copilot-lua
 
   # Fuzzy finder
   telescope-nvim

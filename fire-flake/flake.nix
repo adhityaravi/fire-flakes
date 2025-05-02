@@ -22,7 +22,11 @@
 
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs { 
+        inherit system;
+        # allow codeium and copilot unfree packages
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "codeium" "copilot" "windsurf"];
+    };
 
     fireFlakeConfig = if inputs ? fire-flake-config then
       inputs.fire-flake-config.fireFlakeConfig
@@ -42,8 +46,8 @@
       default = import ./dev-shell/default.nix { inherit pkgs; };
     };
 
-    # Default home-manager configuration
     homeConfigurations = {
+      # Default home-manager configuration
       default = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
@@ -55,6 +59,9 @@
           inherit userVars;
         };
       };
+
+     # Canonical charming configuration
+     
     };
   };
 }

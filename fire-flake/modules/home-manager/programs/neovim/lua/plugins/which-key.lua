@@ -13,4 +13,5 @@ wk.add({
   { "<leader>b", group = "Buffers"},
   { "<leader>l", group = "LSP"},
   { "<leader>f", group = "Telescope"},
+  { "<leader>a", group = "Copilot"},
 })

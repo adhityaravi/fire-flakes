@@ -32,7 +32,7 @@ in {
   };
 
   home.packages = with pkgs; [
-    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerdfonts
     pkgs.libGL
     pkgs.libglvnd
     pkgs.mesa
