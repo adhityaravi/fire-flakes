@@ -27,13 +27,9 @@ fire-flake is a  [Nix flake](https://nixos.wiki/wiki/Flakes) for an opinionated 
 
 It aims to:
 
-- Reproduce user-level setups across any Linux distribution
-- Provide an easy, opinionated starting point for managing programs and dotfiles
-- Prepare for future full system-level configurations for NixOS
-
-Currently in **beta**, focused on **user programs**, **dotfiles**, and **development environments**.
-
-You can find a template private configuration repository here: [fire-flake-config](https://github.com/adhityaravi/fire-flake-config).
+- Provide an opinionated, repeatable, and well-featured SDE environment recipe out-of-the-box
+- Allow the setup to be easily shared and reproduced across different machines for multiple users
+- Be less manual and flaky compared to traditional dotfiles and shell scripts
 
 ---
 
@@ -41,11 +37,8 @@ You can find a template private configuration repository here: [fire-flake-confi
 
 - 📦 **Nix Flakes** powered: fully reproducible, atomic configuration
 - 🏠 **Home Manager** based user-level setup
-- 💻 **Linux agnostic** (Ubuntu, Arch, Fedora, etc.)
 - 🔐 **Private configuration repo support**
 - 🔥 **DevShells** for consistent development tooling
-- 🚀 **Bootstrap script** to install Nix and Home Manager easily
-- 🌳 **Future**: NixOS system configuration, secrets management (sops-nix)
 
 ---
 
@@ -126,15 +119,25 @@ home-manager --impure switch --flake .#default
 - Basic **Git** setup
 - SSH keys added to GitHub if configuring via a private repo 
 
+**Note:** This requirement list the minimum. There coould be app level requirements for specific programs (e.g., `git`, `neovim`, etc.) for accessing the full feature-set. This will be documented in the wiki.
+
 ---
 
 ## Roadmap
 
 - [x] Modular user-level Home Manager setup
-- [x] Private repo integration for personal secrets and vars
-- [x] Multi-host and multi-user profile support
-- [ ] GitHub Actions CI validation
+- [x] fire-flake-config repository for private configuration
 - [ ] Extend available programs for a ready-out-of-bag setup
+    - [x] Git
+    - [x] Neovim
+    - [ ] kitty
+    - [ ] fish
+    - [ ] starship
+    - [ ]
+    - [ ] 
+    - [ ]
+    - [ ]
+- [ ] Devshells
 - [ ] Secrets management with sops-nix
 - [ ] NixOS full system configuration
 - [ ] Bootstrap flow for system setup
@@ -143,16 +146,8 @@ home-manager --impure switch --flake .#default
 
 ## Contributing
 
-**Contributions are welcome!** 🎉
-
-> Contributions around:
-> - New devShell templates
-> - New Home Manager modules (programs)
-> - System-level expansion (NixOS modules)
-> - Secrets encryption (sops-nix integration)
-> are appreciated!
-
-**Fork**, create a branch, and submit a pull request!
+Currently intended as a personal project for distro hopping and learning Nix. However, if you find it useful or want to contribute, feel free to open an issue or PR.
+I will write a proper contributing guide when I have time.
 
 ---
 
