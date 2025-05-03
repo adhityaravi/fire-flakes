@@ -27,3 +27,12 @@ require("copilot").setup({
   },
 })
 
+vim.g.copilot_enabled = true  -- on by default
+function ToggleCopilot()
+  vim.g.copilot_enabled = not vim.g.copilot_enabled
+  if vim.g.copilot_enabled then
+    vim.cmd("Copilot enable")
+  else
+    vim.cmd("Copilot disable")
+  end
+end

@@ -27,7 +27,13 @@ require("plugins.toggleterm")
 require("plugins.smartsplits")
 require("plugins.theme")
 require("plugins.spectre")
+require("plugins.grapple")
 require("plugins.leap")
 require("plugins.octo")
+require("plugins.hydra")
+-- require("plugins.miniclue")  -- whichkey alternative
+require("plugins.noice")
+require("plugins.autosave")
 require("plugins.bqf")
 require("keymap")
+

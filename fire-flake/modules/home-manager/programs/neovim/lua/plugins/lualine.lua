@@ -1,3 +1,4 @@
+-- #todo: refactor status functions to be more generic
 -- get copilot status
 local function copilot_status()
   local ok, client = pcall(require, "copilot.client")
@@ -12,15 +13,38 @@ local function copilot_status()
   end
 
   -- Get attached LSP clients for this buffer
+  -- Not as simple as auto-save, since there is auth involved
   local clients = vim.lsp.get_clients({ bufnr = buf })
-
   for _, client in ipairs(clients) do
     if client and client.name == "copilot" then
-      return "Ast."
+      return "COP"
     end
   end
 
   return ""
+end
+
+-- get autosave status
+local function autosave_status()
+  local ok, auto_save = pcall(require, "auto-save")
+  if not ok or type(auto_save) ~= "table" then
+    return ""
+  end
+
+  local buf = vim.api.nvim_get_current_buf()
+  local buftype = vim.bo[buf].buftype
+  local filetype = vim.bo[buf].filetype
+  -- skip special buffers
+  local invalid_types = { "nofile", "prompt", "quickfix", "terminal" }
+  if vim.tbl_contains(invalid_types, buftype) or filetype == "" then
+    return ""
+  end
+
+  if vim.g.auto_save_enabled then
+    return "AUT"
+  else
+    return ""
+  end
 end
 
 -- get lsp status
@@ -49,7 +73,7 @@ require("lualine").setup({
     options = {
       theme = "auto",
       icons_enabled = true,
-      component_separators = { left = "", right = "" },
+      component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       always_divide_middle = true,
       globalstatus = true,
@@ -67,9 +91,17 @@ require("lualine").setup({
         {
           copilot_status,
           icon = "",
-          color = { fg = "#a6e3a1" },
+          color = { fg = "#00FF00" },
           cond = function()
             return copilot_status() ~= ""
+          end,
+        },
+        {
+          autosave_status,
+          icon = "",
+          color = { fg = "#00FF00" },
+          cond = function()
+            return autosave_status() ~= ""
           end,
         },
       },
@@ -87,11 +119,11 @@ require("lualine").setup({
         function()
           local mode = vim.fn.mode()
           if mode == "n" then
-            return "≽^•⩊•^≼ ❄️"
+            return "≽^•⩊•^≼"
           elseif mode == "i" then
-            return "ฅ^•ﻌ•^ฅ 🔥"
+            return "ฅ^•ﻌ•^ฅ"
           else
-            return "(=ↀωↀ=)🔧"
+            return "(=ↀωↀ=)"
           end
         end
       },

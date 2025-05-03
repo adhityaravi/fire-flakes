@@ -11,16 +11,16 @@ wk.setup({
 })
 wk.add({
   { "<leader>g", group = "[g]it", icon = "󰊢"},
-  { "<leader>gh", group = "[g]it[h]ub", icon = ""},
-  { "<leader>n", group = "[n]vimTree", icon = "󰉓"},
+  { "<leader>gh", group = "git[h]ub", icon = ""},
   { "<leader>b", group = "[b]uffers", icon = "󰈚"},
   { "<leader>l", group = "[l]SP", icon = "󰒕"},
-  { "<leader>f", group = "Telescope[f]ind", icon = "󰭎"},
-  { "<leader>a", group = "[a]IAssist", icon = ""},
+  { "<leader>f", group = "[f]uzzy-find", icon = "󰭎"},
+  { "<leader>a", group = "[a]i-assist", icon = ""},
   { "<leader>t", group = "[t]oggles", icon = ""},
   { "<leader>d", group = "[d]ebug", icon = ""},
-  { "<leader>r", group = "find&[r]eplace", icon = ""},
-  { "<leader>q", group = "[q]uickfix", icon = ""},
+  { "<leader>r", group = "find-[r]eplace", icon = ""},
+  { "<leader>p", group = "gra[p]ple", icon = "🐾"},
+  { "<leader>q", group = "[q]uick-fix", icon = ""},
 })
 
 -- Bufferline keymaps 
@@ -60,9 +60,6 @@ vim.keymap.set("n", "<leader>ghg", ":Octo assignee add<CR>", { desc = "GitHub: A
 -- Reactions
 vim.keymap.set("n", "<leader>ghh", ":Octo reaction add +1<CR>", { desc = "GitHub: Add 👍 Reaction" })
 
--- Nvimtree keymaps
-vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
-
 -- Smartsplit keymaps
 local ss = require("smart-splits")
 -- Resize splits
@@ -90,7 +87,8 @@ vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
 vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics" })
 vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Jump to mark" })
-vim.keymap.set("n", "<leader>fp", "<cmd>Telescope project<CR>", { desc = "Projects" }) -- if using telescope-project
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope project<CR>", { desc = "Projects" })
+vim.keymap.set("n", "<leader>fs", "<cmd>Telescope grapple tags<CR>", { desc = "Grapple tags" })
 vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<CR>", { desc = "Symbols (Treesitter)" })
 
 -- LSP
@@ -103,7 +101,9 @@ vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", { d
 vim.keymap.set("n", "<leader>tc", ToggleTheme, { desc = "Toggle Color Theme" })
 vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
-
+vim.keymap.set("n", "<leader>tp", ToggleCopilot, { desc = "Toggle Copilot" })
+vim.keymap.set("n", "<leader>ta", ToggleAutoSave, { desc = "Toggle Autosave" })
+vim.keymap.set("n", "<leader>tn", ":NvimTreeToggle<CR>", { desc = "Toggle FileExplorer", noremap = true, silent = true })
 
 -- Quickfix
 vim.keymap.set("n", "<leader>qo", ":copen<CR>", { noremap = true, silent = true })
@@ -111,7 +111,6 @@ vim.keymap.set("n", "<leader>qc", ":cclose<CR>", { noremap = true, silent = true
 vim.keymap.set("n", "<leader>qn", ":cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qp", ":cprev<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qq", ":lua vim.diagnostic.setqflist()<CR>:copen<CR>", { noremap = true, silent = true })
-
 
 -- Debugging
 -- DAP
@@ -131,4 +130,12 @@ vim.keymap.set("n", "<leader>rr", function() require("spectre").open() end, { de
 vim.keymap.set("n", "<leader>rw", function() require("spectre").open_visual({ select_word = true }) end, { desc = "Replace Word Under Cursor" })
 vim.keymap.set("v", "<leader>rw", function() require("spectre").open_visual() end, { desc = "Replace Selection" })
 vim.keymap.set("n", "<leader>rf", function() require("spectre").open_file_search() end, { desc = "Replace in Current File" })
+
+-- Grapple
+vim.keymap.set("n", "<leader>pa", "<cmd>Grapple tag<CR>", { desc = "Grapple: Add tag" })
+vim.keymap.set("n", "<leader>pr", "<cmd>Grapple untag<CR>", { desc = "Grapple: Remove tag" })
+vim.keymap.set("n", "<leader>pm", "<cmd>Grapple toggle_tags<CR>", { desc = "Grapple: Toggle tag menu" })
+vim.keymap.set("n", "<leader>pn", "<cmd>Grapple cycle_tags next<CR>", { desc = "Grapple: Next tag" })
+vim.keymap.set("n", "<leader>pp", "<cmd>Grapple cycle_tags previous<CR>", { desc = "Grapple: Previous tag" })
+vim.keymap.set("n", "<leader>ps", "<cmd>Grapple toggle_scopes<CR>", { desc = "Grapple: Toggle scope" })
 

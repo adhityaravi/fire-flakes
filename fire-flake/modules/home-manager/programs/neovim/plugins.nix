@@ -19,7 +19,12 @@ with pkgs.vimPlugins; [
   plenary-nvim
   nvim-web-devicons
   mini-nvim
+
+  # UX
   which-key-nvim
+  noice-nvim
+  hydra-nvim
+  auto-save-nvim
 
   # UI
   lualine-nvim
@@ -55,11 +60,12 @@ with pkgs.vimPlugins; [
   cmp-cmdline
   copilot-lua
 
-  # Fuzzy finder
+  # Search and navigation
   telescope-nvim
   telescope-project-nvim
   telescope-file-browser-nvim
   nvim-spectre
+  grapple-nvim
 
   # File explorer
   nvim-tree-lua
