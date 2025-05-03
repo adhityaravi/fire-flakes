@@ -17,7 +17,6 @@ fire-flake is a  [Nix flake](https://nixos.wiki/wiki/Flakes) for an opinionated 
 - [Requirements](#requirements)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -149,7 +148,6 @@ home-manager --impure switch --flake .#default
 Currently intended as a personal project for distro hopping and learning Nix. However, if you find it useful or want to contribute, feel free to open an issue or PR.
 I will write a proper contributing guide when I have time.
 
----
 
-[## Wiki](https://github.com/adhityaravi/fire-flake/wiki)
+[Wiki](https://github.com/adhityaravi/fire-flake/wiki)
 
