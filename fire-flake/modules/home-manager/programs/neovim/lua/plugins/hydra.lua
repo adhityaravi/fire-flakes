@@ -1,16 +1,29 @@
-
 local Hydra = require("hydra")
 
+-- Windows resizing hydra (ex.)
 Hydra({
-  name = "Window Resize",
-  mode = "n",
-  body = "<leader>w", -- entry point to this hydra
+  name = 'resize-[w]indows',
+  mode = 'n',
+  body = '<leader>hw',
+  config = {
+    color = 'teal',
+    invoke_on_body = true,
+    hint = {
+      position = 'top-right',
+      border = 'rounded',
+      type = 'window',
+    },
+  },
+  hint = [[
+_h_: ←  _j_: ↓  _k_: ↑  _l_: →
+
+        _q_: quit]],
   heads = {
-    { "h", "<cmd>resize -2<CR>", { desc = "Shrink Horizontal" } },
-    { "l", "<cmd>resize +2<CR>", { desc = "Expand Horizontal" } },
-    { "k", "<cmd>vertical resize -2<CR>", { desc = "Shrink Vertical" } },
-    { "j", "<cmd>vertical resize +2<CR>", { desc = "Expand Vertical" } },
-    { "q", nil, { exit = true, desc = "Exit" } },
+    { 'h', '<cmd>vertical resize -2<CR>', { exit = false, desc = 'Shrink Width' } },
+    { 'l', '<cmd>vertical resize +2<CR>', { exit = false, desc = 'Expand Width' } },
+    { 'j', '<cmd>resize +2<CR>',         { exit = false, desc = 'Increase Height' } },
+    { 'k', '<cmd>resize -2<CR>',         { exit = false, desc = 'Decrease Height' } },
+    { 'q', nil, { exit = true, nowait = true, desc = 'Quit Hydra' } },
   }
 })
 

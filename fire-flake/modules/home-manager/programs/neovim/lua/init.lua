@@ -9,7 +9,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
 vim.opt.fillchars:append { vert = "│" } -- or "┃", "▕", etc.
 
--- Load all plugin configs
+-- Load all plugin configs - order matters
 require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.cmp")
@@ -30,10 +30,10 @@ require("plugins.spectre")
 require("plugins.grapple")
 require("plugins.leap")
 require("plugins.octo")
-require("plugins.hydra")
 -- require("plugins.miniclue")  -- whichkey alternative
 require("plugins.noice")
 require("plugins.autosave")
 require("plugins.bqf")
 require("keymap")
+require("plugins.hydra")
 

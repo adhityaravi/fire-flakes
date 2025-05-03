@@ -6,6 +6,12 @@ local themes = {
   "oxocarbon",
   "everforest",
   "gruvbox",
+  "nightfox",
+  "edge",
+  "onedark",
+  "dracula",
+  "monokai-pro",
+  "cyberdream",
 }
 
 local theme_file = vim.fn.stdpath("config") .. "/theme.txt"

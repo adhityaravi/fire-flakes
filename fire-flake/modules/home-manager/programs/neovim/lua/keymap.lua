@@ -9,19 +9,39 @@ wk.setup({
     border = "rounded",
   }
 })
+-- wk hydra mode wrong usage?  
+-- wk.show({
+--   keys = "<C-w>",
+--   loop = true,
+-- })
 wk.add({
-  { "<leader>g", group = "[g]it", icon = "󰊢"},
-  { "<leader>gh", group = "git[h]ub", icon = ""},
-  { "<leader>b", group = "[b]uffers", icon = "󰈚"},
-  { "<leader>l", group = "[l]SP", icon = "󰒕"},
-  { "<leader>f", group = "[f]uzzy-find", icon = "󰭎"},
-  { "<leader>a", group = "[a]i-assist", icon = ""},
-  { "<leader>t", group = "[t]oggles", icon = ""},
-  { "<leader>d", group = "[d]ebug", icon = ""},
-  { "<leader>r", group = "find-[r]eplace", icon = ""},
-  { "<leader>p", group = "gra[p]ple", icon = "🐾"},
-  { "<leader>q", group = "[q]uick-fix", icon = ""},
+  { "<leader>h", group = "hydras", icon = "󰕚"},
+  { "<leader>g", group = "git", icon = "󰊢"},
+  { "<leader>gh", group = "github", icon = ""},
+  { "<leader>b", group = "buffers", icon = "󰈚"},
+  { "<leader>l", group = "lsp", icon = "󰒕"},
+  { "<leader>f", group = "fuzzy-find", icon = "󰭎"},
+  { "<leader>a", group = "ai-assist", icon = ""},
+  { "<leader>t", group = "toggles", icon = ""},
+  { "<leader>d", group = "debug", icon = ""},
+  { "<leader>r", group = "find-replace", icon = ""},
+  { "<leader>p", group = "grapple", icon = "󰄛"},
+  { "<leader>q", group = "quick-fix", icon = ""},
 })
+
+-- mini-clue setup. personally prefer which-key, but internet says this is better.
+-- vim.keymap.set("n", "<leader>h", function() end, { desc = "󰕚 hydras" })
+-- vim.keymap.set("n", "<leader>g", function() end, { desc = "󰊢 git" })
+-- vim.keymap.set("n", "<leader>gh", function() end, { desc = " github" })
+-- vim.keymap.set("n", "<leader>b", function() end, { desc = "󰈚 buffers" })
+-- vim.keymap.set("n", "<leader>l", function() end, { desc = "󰒕 lsp" })
+-- vim.keymap.set("n", "<leader>f", function() end, { desc = "󰭎 fuzzy-find" })
+-- vim.keymap.set("n", "<leader>a", function() end, { desc = " ai-assist" })
+-- vim.keymap.set("n", "<leader>t", function() end, { desc = " toggles" })
+-- vim.keymap.set("n", "<leader>d", function() end, { desc = " debug" })
+-- vim.keymap.set("n", "<leader>r", function() end, { desc = " find-replace" })
+-- vim.keymap.set("n", "<leader>p", function() end, { desc = "󰄛 grapple" })
+-- vim.keymap.set("n", "<leader>q", function() end, { desc = " quick-fix" })
 
 -- Bufferline keymaps 
 vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
@@ -33,8 +53,8 @@ vim.keymap.set("n", "<leader>bl", ":BufferLineMoveNext<CR>", { desc = "Move buff
 vim.keymap.set("n", "<leader>bh", ":BufferLineMovePrev<CR>", { desc = "Move buffer left" })
 
 -- Copilot keymaps 
-vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" })
-vim.keymap.set("n", "<leader>ad", "<cmd>Copilot disable<CR>", { desc = "Copilot Disable" })
+vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" }) -- deprecate over toggle
+vim.keymap.set("n", "<leader>ad", "<cmd>Copilot disable<CR>", { desc = "Copilot Disable" }) -- deprecate over toggle
 vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "Copilot Status" })
 
 -- Git keymaps

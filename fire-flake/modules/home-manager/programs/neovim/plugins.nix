@@ -42,6 +42,12 @@ with pkgs.vimPlugins; [
   oxocarbon-nvim
   everforest
   gruvbox-nvim
+  nightfox-nvim
+  edge
+  onedarkpro-nvim
+  dracula-nvim
+  monokai-pro-nvim
+  cyberdream-nvim
 
   # Syntax highlighting
   treesitter
