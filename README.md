@@ -28,8 +28,8 @@ fire-flake is a  [Nix flake](https://nixos.wiki/wiki/Flakes) for an opinionated 
 It aims to:
 
 - Provide an opinionated, repeatable, and well-featured SDE environment recipe out-of-the-box
-- Allow the setup to be easily shared and reproduced across different machines for multiple users
-- Be less manual and flaky (lol, the irony) compared to traditional dotfiles and shell scripts
+- Allow the setup to be easily versioned, shared and reproduced across different machines for multiple users
+- Be less manual, invasie and flaky (lol, the irony) compared to traditional dotfiles and shell scripts
 
 ---
 
