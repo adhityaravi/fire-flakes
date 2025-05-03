@@ -29,7 +29,7 @@ It aims to:
 
 - Provide an opinionated, repeatable, and well-featured SDE environment recipe out-of-the-box
 - Allow the setup to be easily shared and reproduced across different machines for multiple users
-- Be less manual and flaky compared to traditional dotfiles and shell scripts
+- Be less manual and flaky (lol, the irony) compared to traditional dotfiles and shell scripts
 
 ---
 
@@ -119,7 +119,7 @@ home-manager --impure switch --flake .#default
 - Basic **Git** setup
 - SSH keys added to GitHub if configuring via a private repo 
 
-**Note:** This requirement list the minimum. There coould be app level requirements for specific programs (e.g., `git`, `neovim`, etc.) for accessing the full feature-set. This will be documented in the wiki.
+**Note:** This requirement list the minimum. There could be app level requirements for specific programs (e.g., `git`, `neovim`, etc.) for accessing the full feature-set. This will be documented in the [wiki](https://github.com/adhityaravi/fire-flake/wiki).
 
 ---
 
@@ -151,6 +151,5 @@ I will write a proper contributing guide when I have time.
 
 ---
 
-## License
+[## Wiki](https://github.com/adhityaravi/fire-flake/wiki)
 
-#todo
