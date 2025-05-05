@@ -2,7 +2,7 @@
   <img src="https://github.com/user-attachments/assets/23ba47e9-0709-4445-8b2a-1665ac098d33" width="400">
 </h1><br>
 
-fire-flake is a  [Nix flake](https://nixos.wiki/wiki/Flakes) for an opinionated development environment.
+fire-flake is a  [Nix flake](https://nixos.wiki/wiki/Flakes) to setup an opinionated SDE system.
 > Currently in beta and focused on user-level configuration with future plans for full system-level NixOS management. There will be continuous breaking changes until maturity.
 
 ---
@@ -28,7 +28,8 @@ It aims to:
 
 - Provide an opinionated, repeatable, and well-featured SDE environment recipe out-of-the-box
 - Allow the setup to be easily versioned, shared and reproduced across different machines for multiple users
-- Be less manual, invasie and flaky (lol, the irony) compared to traditional dotfiles and shell scripts
+- Be less manual, invasive and flaky (lol, the irony) compared to traditional dotfiles and shell scripts
+- Allow system level configuration (for NixOS based systems) under the same framework
 
 ---
 
@@ -83,6 +84,11 @@ This will:
 
 ## Usage
 
+> ℹ️ **Info**
+>
+> Currently flake can be used only after cloning the repository locally. `nix` or `home-manager` commands cant be used because of a design flaw. I plan to fix it. See [Roadmap](https://github.com/adhityaravi/fire-flake/wiki#roadmap). 
+
+
 After installation:
 
 ```bash
@@ -119,23 +125,6 @@ home-manager --impure switch --flake .#default
 - SSH keys added to GitHub if configuring via a private repo 
 
 **Note:** This requirement list the minimum. There could be app level requirements for specific programs (e.g., `git`, `neovim`, etc.) for accessing the full feature-set. This will be documented in the [wiki](https://github.com/adhityaravi/fire-flake/wiki).
-
----
-
-## Roadmap
-
-- [x] Modular user-level Home Manager setup
-- [x] fire-flake-config repository for private configuration
-- [ ] Extend available programs for a ready-out-of-bag setup
-    - [x] Git
-    - [x] Neovim
-    - [ ] kitty
-    - [ ] fish
-    - [ ] starship
-- [ ] Devshells
-- [ ] Secrets management with sops-nix
-- [ ] NixOS full system configuration
-- [ ] Bootstrap flow for system setup
 
 ---
 
