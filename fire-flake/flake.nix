@@ -14,7 +14,8 @@
     # Optional: if disabled, an attempt will be made to load local configuration file from the vars directory. 
     # Note: Only ssh auth is tested.
     fire-flake-config = {
-      url = "git+ssh://git@github.com/adhityaravi/fire-flake-config-ivdi.git";
+      url = "github:adhityaravi/fire-flake-config-ivdi";
+      # url = "git+ssh://git@github.com/adhityaravi/fire-flake-config-ivdi.git";
       flake = true;
     };
   };

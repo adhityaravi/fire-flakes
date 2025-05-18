@@ -2,17 +2,17 @@
   "nodes": {
     "fire-flake-config": {
       "locked": {
-        "lastModified": 1745782148,
-        "narHash": "sha256-Pi0ppNUHApsaKIOSebUuphgz1D176Ac6heegV3j/hk8=",
-        "ref": "refs/heads/main",
-        "rev": "81e1f4e1df4ced0e741c29b842d8b90d327fb35e",
-        "revCount": 3,
-        "type": "git",
-        "url": "ssh://git@github.com/adhityaravi/fire-flake-config-ivdi.git"
+        "lastModified": 1746183216,
+        "narHash": "sha256-e8hBkWJjdHIheBXgwmUSDsLEM3xwsXSc8QyvHYK1SPo=",
+        "owner": "adhityaravi",
+        "repo": "fire-flake-config-ivdi",
+        "rev": "d7ca2b746b1e31ce8849c494fb60defa348657a4",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/adhityaravi/fire-flake-config-ivdi.git"
+        "owner": "adhityaravi",
+        "repo": "fire-flake-config-ivdi",
+        "type": "github"
       }
     },
     "home-manager": {
