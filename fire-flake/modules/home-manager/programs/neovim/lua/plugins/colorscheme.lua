@@ -1,7 +1,7 @@
 -- Telescope colorscheme picker with persistence
 local M = {}
 
-local config_path = vim.fn.stdpath("config") .. "/colorscheme.txt"
+local config_path = vim.fn.stdpath("config") .. "/.colorscheme"
 
 function M.save(theme)
   local f = io.open(config_path, "w")
@@ -28,19 +28,25 @@ end
 function M.pick()
   local actions = require("telescope.actions")
   local state = require("telescope.actions.state")
-  local theme = state.get_selected_entry().value
+
   require("telescope.builtin").colorscheme {
     enable_preview = true,
     attach_mappings = function(_, map)
       map("i", "<CR>", function(prompt_bufnr)
-        vim.cmd.colorscheme(theme)
-        M.save(theme)
+        local entry = state.get_selected_entry()
+        if entry then
+          local theme = entry.value
+          vim.cmd.colorscheme(theme)
+          M.save(theme)
+          vim.notify("Colorscheme: " .. theme, vim.log.levels.INFO)
+        else
+          vim.notify("No colorscheme selected", vim.log.levels.WARN)
+        end
         actions.close(prompt_bufnr)
       end)
       return true
     end
   }
-  vim.notify("Colorscheme: " .. theme, vim.log.levels.INFO)
 end
 
 return M

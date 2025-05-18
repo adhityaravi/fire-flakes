@@ -109,6 +109,8 @@ vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Di
 vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Jump to mark" })
 vim.keymap.set("n", "<leader>fp", "<cmd>Telescope project<CR>", { desc = "Projects" })
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope grapple tags<CR>", { desc = "Grapple tags" })
+vim.keymap.set("n", "<leader>fx", function() require("plugins.colorscheme").load() end, { desc = "Themes" })
+vim.keymap.set("n", "<leader>fz", function() require("plugins.colorscheme").pick() end, { desc = "Themes" })
 vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<CR>", { desc = "Symbols (Treesitter)" })
 
 -- LSP
@@ -118,7 +120,6 @@ vim.keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<CR>", { de
 vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Document Symbols" })
 
 -- Toggles
-vim.keymap.set("n", "<leader>tc", ToggleTheme, { desc = "Toggle Color Theme" })
 vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
 vim.keymap.set("n", "<leader>tp", ToggleCopilot, { desc = "Toggle Copilot" })

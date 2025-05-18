@@ -10,6 +10,8 @@ vim.opt.termguicolors = true
 vim.opt.fillchars:append { vert = "│" } -- or "┃", "▕", etc.
 
 -- Load all plugin configs - order matters
+-- #todo: lazyload
+require("plugins.colorscheme").load()
 require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.cmp")
@@ -25,7 +27,6 @@ require("plugins.bufferline")
 require("plugins.copilot")
 require("plugins.toggleterm")
 require("plugins.smartsplits")
-require("plugins.theme")
 require("plugins.spectre")
 require("plugins.grapple")
 require("plugins.leap")
