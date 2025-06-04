@@ -125,7 +125,7 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
 vim.keymap.set("n", "<leader>tp", ToggleCopilot, { desc = "Toggle Copilot" })
 vim.keymap.set("n", "<leader>ta", ToggleAutoSave, { desc = "Toggle Autosave" })
 vim.keymap.set("n", "<leader>tn", ":NvimTreeToggle<CR>", { desc = "Toggle FileExplorer", noremap = true, silent = true })
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>to", "<cmd>Oil<CR>", { desc = "Toggle Oil" })
 
 -- Quickfix
 vim.keymap.set("n", "<leader>qo", ":copen<CR>", { noremap = true, silent = true })
