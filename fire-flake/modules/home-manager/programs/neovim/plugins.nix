@@ -75,6 +75,7 @@ with pkgs.vimPlugins; [
 
   # File explorer
   nvim-tree-lua
+  oil-nvim
 
   # Debugging
   nvim-dap
