@@ -7,10 +7,13 @@ vim.opt.tabstop = 2
 vim.opt.smartindent = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
-vim.opt.fillchars:append { vert = "│" }
+vim.opt.fillchars:append { vert = "│" } -- or "┃", "▕", etc.
 
 -- Always load theme
 require("plugins.colorscheme").load()
+
+-- Load all plugin configs - order matters
+-- #todo: lazyload
 
 -- UI plugins that must initialize on startup
 require("plugins.oil")
@@ -60,6 +63,7 @@ local lazy_plugins = {
   "plugins.autosave",
   "plugins.bqf",
   "plugins.hydra",
+  -- require("plugins.miniclue")  -- whichkey alternative
 }
 
 for _, mod in ipairs(lazy_plugins) do

@@ -29,6 +29,20 @@ wk.add({
   { "<leader>q", group = "quick-fix", icon = ""},
 })
 
+-- mini-clue setup. personally prefer which-key, but internet says this is better.
+-- vim.keymap.set("n", "<leader>h", function() end, { desc = "󰕚 hydras" })
+-- vim.keymap.set("n", "<leader>g", function() end, { desc = "󰊢 git" })
+-- vim.keymap.set("n", "<leader>gh", function() end, { desc = " github" })
+-- vim.keymap.set("n", "<leader>b", function() end, { desc = "󰈚 buffers" })
+-- vim.keymap.set("n", "<leader>l", function() end, { desc = "󰒕 lsp" })
+-- vim.keymap.set("n", "<leader>f", function() end, { desc = "󰭎 fuzzy-find" })
+-- vim.keymap.set("n", "<leader>a", function() end, { desc = " ai-assist" })
+-- vim.keymap.set("n", "<leader>t", function() end, { desc = " toggles" })
+-- vim.keymap.set("n", "<leader>d", function() end, { desc = " debug" })
+-- vim.keymap.set("n", "<leader>r", function() end, { desc = " find-replace" })
+-- vim.keymap.set("n", "<leader>p", function() end, { desc = "󰄛 grapple" })
+-- vim.keymap.set("n", "<leader>q", function() end, { desc = " quick-fix" })
+
 -- helper wrappers for lazy plugins
 local function Telescope(cmd)
   require("plugins.telescope")
