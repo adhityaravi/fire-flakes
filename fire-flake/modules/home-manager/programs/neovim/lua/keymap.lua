@@ -9,7 +9,7 @@ wk.setup({
     border = "rounded",
   }
 })
--- wk hydra mode wrong usage?  
+-- wk hydra mode wrong usage?
 -- wk.show({
 --   keys = "<C-w>",
 --   loop = true,
@@ -43,42 +43,81 @@ wk.add({
 -- vim.keymap.set("n", "<leader>p", function() end, { desc = "󰄛 grapple" })
 -- vim.keymap.set("n", "<leader>q", function() end, { desc = " quick-fix" })
 
--- Bufferline keymaps 
-vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { desc = "Pick buffer" })
-vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { desc = "Close others" })
-vim.keymap.set("n", "<leader>bl", ":BufferLineMoveNext<CR>", { desc = "Move buffer right" })
-vim.keymap.set("n", "<leader>bh", ":BufferLineMovePrev<CR>", { desc = "Move buffer left" })
+-- helper wrappers for lazy plugins
+local function Telescope(cmd)
+  require("plugins.telescope")
+  vim.cmd("Telescope " .. cmd)
+end
 
--- Copilot keymaps 
+local function ToggleTermCmd()
+  require("plugins.toggleterm")
+  vim.cmd("ToggleTerm")
+end
+
+local function NvimTreeToggle()
+  require("plugins.nvimtree")
+  vim.cmd("NvimTreeToggle")
+end
+
+local function OilToggle()
+  require("plugins.oil")
+  vim.cmd("Oil")
+end
+
+local function ToggleCopilotCmd()
+  require("plugins.copilot")
+  ToggleCopilot()
+end
+
+local function ToggleAutoSaveCmd()
+  require("plugins.autosave")
+  ToggleAutoSave()
+end
+
+local function ensure_dap()
+  require("plugins.dap")
+end
+
+local function ensure_neotest()
+  require("plugins.neotest")
+end
+
+-- Bufferline keymaps
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePick<CR>", { desc = "Pick buffer" })
+vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close others" })
+vim.keymap.set("n", "<leader>bl", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer right" })
+vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left" })
+
+-- Copilot keymaps
 vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" }) -- deprecate over toggle
 vim.keymap.set("n", "<leader>ad", "<cmd>Copilot disable<CR>", { desc = "Copilot Disable" }) -- deprecate over toggle
 vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "Copilot Status" })
 
 -- Git keymaps
-vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open Lazygit" })
-vim.keymap.set("n", "<leader>gS", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
-vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits" })
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open Lazygit" })
+vim.keymap.set("n", "<leader>gS", function() Telescope("git_status") end, { desc = "Git status" })
+vim.keymap.set("n", "<leader>gc", function() Telescope("git_commits") end, { desc = "Git commits" })
 -- GitHub
 -- List & create issues/PRs
-vim.keymap.set("n", "<leader>ghi", ":Octo issue list<CR>", { desc = "GitHub: List Issues" })
-vim.keymap.set("n", "<leader>ghp", ":Octo pr list<CR>", { desc = "GitHub: List Pull Requests" })
-vim.keymap.set("n", "<leader>ghP", ":Octo pr create<CR>", { desc = "GitHub: Create Pull Request" })
-vim.keymap.set("n", "<leader>ghc", ":Octo pr checkout<CR>", { desc = "GitHub: Checkout PR" })
+vim.keymap.set("n", "<leader>ghi", "<cmd>Octo issue list<CR>", { desc = "GitHub: List Issues" })
+vim.keymap.set("n", "<leader>ghp", "<cmd>Octo pr list<CR>", { desc = "GitHub: List Pull Requests" })
+vim.keymap.set("n", "<leader>ghP", "<cmd>Octo pr create<CR>", { desc = "GitHub: Create Pull Request" })
+vim.keymap.set("n", "<leader>ghc", "<cmd>Octo pr checkout<CR>", { desc = "GitHub: Checkout PR" })
 -- Review actions
-vim.keymap.set("n", "<leader>ghs", ":Octo review start<CR>", { desc = "GitHub: Start Review" })
-vim.keymap.set("n", "<leader>gha", ":Octo review approve<CR>", { desc = "GitHub: Approve PR" })
-vim.keymap.set("n", "<leader>ghr", ":Octo review request_changes<CR>", { desc = "GitHub: Request Changes" })
-vim.keymap.set("n", "<leader>ghm", ":Octo review comment<CR>", { desc = "GitHub: Add Review Comment" })
-vim.keymap.set("n", "<leader>ghS", ":Octo review submit<CR>", { desc = "GitHub: Submit Review" })
+vim.keymap.set("n", "<leader>ghs", "<cmd>Octo review start<CR>", { desc = "GitHub: Start Review" })
+vim.keymap.set("n", "<leader>gha", "<cmd>Octo review approve<CR>", { desc = "GitHub: Approve PR" })
+vim.keymap.set("n", "<leader>ghr", "<cmd>Octo review request_changes<CR>", { desc = "GitHub: Request Changes" })
+vim.keymap.set("n", "<leader>ghm", "<cmd>Octo review comment<CR>", { desc = "GitHub: Add Review Comment" })
+vim.keymap.set("n", "<leader>ghS", "<cmd>Octo review submit<CR>", { desc = "GitHub:Submit Review" })
 -- Metadata management (labels, reviewers, assignees)
-vim.keymap.set("n", "<leader>ghl", ":Octo label add<CR>", { desc = "GitHub: Add Label" })
-vim.keymap.set("n", "<leader>ghu", ":Octo reviewer add<CR>", { desc = "GitHub: Add Reviewer" })
-vim.keymap.set("n", "<leader>ghg", ":Octo assignee add<CR>", { desc = "GitHub: Add Assignee" })
+vim.keymap.set("n", "<leader>ghl", "<cmd>Octo label add<CR>", { desc = "GitHub: Add Label" })
+vim.keymap.set("n", "<leader>ghu", "<cmd>Octo reviewer add<CR>", { desc = "GitHub: Add Reviewer" })
+vim.keymap.set("n", "<leader>ghg", "<cmd>Octo assignee add<CR>", { desc = "GitHub: Add Assignee" })
 -- Reactions
-vim.keymap.set("n", "<leader>ghh", ":Octo reaction add +1<CR>", { desc = "GitHub: Add 👍 Reaction" })
+vim.keymap.set("n", "<leader>ghh", "<cmd>Octo reaction add +1<CR>", { desc = "GitHub: Add 👍 Reaction" })
 
 -- Smartsplit keymaps
 local ss = require("smart-splits")
@@ -99,53 +138,53 @@ vim.keymap.set("n", "<leader>bk", ss.swap_buf_up, { desc = "Move buffer up" })
 vim.keymap.set("n", "<leader>bj", ss.swap_buf_down, { desc = "Move buffer down" })
 
 -- Telescope keymaps
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
-vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent files" })
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Open buffers" })
-vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help tags" })
-vim.keymap.set("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
-vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics" })
-vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Jump to mark" })
-vim.keymap.set("n", "<leader>fp", "<cmd>Telescope project<CR>", { desc = "Projects" })
-vim.keymap.set("n", "<leader>fs", "<cmd>Telescope grapple tags<CR>", { desc = "Grapple tags" })
+vim.keymap.set("n", "<leader>ff", function() Telescope("find_files") end, { desc = "Find files" })
+vim.keymap.set("n", "<leader>fr", function() Telescope("oldfiles") end, { desc = "Recent files" })
+vim.keymap.set("n", "<leader>fg", function() Telescope("live_grep") end, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fb", function() Telescope("buffers") end, { desc = "Open buffers" })
+vim.keymap.set("n", "<leader>fh", function() Telescope("help_tags") end, { desc = "Help tags" })
+vim.keymap.set("n", "<leader>fc", function() Telescope("current_buffer_fuzzy_find") end, { desc = "Find in current buffer" })
+vim.keymap.set("n", "<leader>fd", function() Telescope("diagnostics") end, { desc = "Diagnostics" })
+vim.keymap.set("n", "<leader>fm", function() Telescope("marks") end, { desc = "Jump to mark" })
+vim.keymap.set("n", "<leader>fp", function() Telescope("project") end, { desc = "Projects" })
+vim.keymap.set("n", "<leader>fs", function() Telescope("grapple tags") end, { desc = "Grapple tags" })
 vim.keymap.set("n", "<leader>fx", function() require("plugins.colorscheme").load() end, { desc = "Themes" })
 vim.keymap.set("n", "<leader>fz", function() require("plugins.colorscheme").pick() end, { desc = "Themes" })
-vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<CR>", { desc = "Symbols (Treesitter)" })
+vim.keymap.set("n", "<leader>ft", function() Telescope("treesitter") end, { desc = "Symbols (Treesitter)" })
 
 -- LSP
-vim.keymap.set("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP Definitions" })
-vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP References" })
-vim.keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP Implementations" })
-vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Document Symbols" })
+vim.keymap.set("n", "<leader>ld", function() Telescope("lsp_definitions") end, { desc = "LSP Definitions" })
+vim.keymap.set("n", "<leader>lr", function() Telescope("lsp_references") end, { desc = "LSP References" })
+vim.keymap.set("n", "<leader>li", function() Telescope("lsp_implementations") end, { desc = "LSP Implementations" })
+vim.keymap.set("n", "<leader>ls", function() Telescope("lsp_document_symbols") end, { desc = "Document Symbols" })
 
 -- Toggles
-vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+vim.keymap.set("n", "<leader>tt", ToggleTermCmd, { desc = "Toggle Terminal" })
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
-vim.keymap.set("n", "<leader>tp", ToggleCopilot, { desc = "Toggle Copilot" })
-vim.keymap.set("n", "<leader>ta", ToggleAutoSave, { desc = "Toggle Autosave" })
-vim.keymap.set("n", "<leader>tn", ":NvimTreeToggle<CR>", { desc = "Toggle FileExplorer", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>to", "<cmd>Oil<CR>", { desc = "Toggle Oil", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tp", ToggleCopilotCmd, { desc = "Toggle Copilot" })
+vim.keymap.set("n", "<leader>ta", ToggleAutoSaveCmd, { desc = "Toggle Autosave" })
+vim.keymap.set("n", "<leader>tn", NvimTreeToggle, { desc = "Toggle FileExplorer", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>to", OilToggle, { desc = "Toggle Oil", noremap = true, silent = true })
 
 -- Quickfix
-vim.keymap.set("n", "<leader>qo", ":copen<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qc", ":cclose<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qn", ":cnext<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qp", ":cprev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qq", ":lua vim.diagnostic.setqflist()<CR>:copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>", { noremap = true, silent = true })
 
 -- Debugging
 -- DAP
-vim.keymap.set("n", "<leader>dd", ":lua require'dap'.continue()<CR>", { silent = true, desc = "Start/Continue Debug" })
-vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true, desc = "Toggle Breakpoint" })
-vim.keymap.set("n", "<leader>do", ":lua require'dap'.step_over()<CR>", { silent = true, desc = "Step Over" })
-vim.keymap.set("n", "<leader>di", ":lua require'dap'.step_into()<CR>", { silent = true, desc = "Step Into" })
-vim.keymap.set("n", "<leader>du", ":lua require'dapui'.toggle()<CR>", { silent = true, desc = "Toggle DAP UI" })
+vim.keymap.set("n", "<leader>dd", function() ensure_dap(); require'dap'.continue() end, { silent = true, desc = "Start/Continue Debug" })
+vim.keymap.set("n", "<leader>db", function() ensure_dap(); require'dap'.toggle_breakpoint() end, { silent = true, desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>do", function() ensure_dap(); require'dap'.step_over() end, { silent = true, desc = "Step Over" })
+vim.keymap.set("n", "<leader>di", function() ensure_dap(); require'dap'.step_into() end, { silent = true, desc = "Step Into" })
+vim.keymap.set("n", "<leader>du", function() ensure_dap(); require'dapui'.toggle() end, { silent = true, desc = "Toggle DAP UI" })
 -- Neotest
-vim.keymap.set("n", "<leader>dt", ":lua require('neotest').run.run()<CR>", { silent = true, desc = "Run Nearest Test" })
-vim.keymap.set("n", "<leader>df", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", { silent = true, desc = "Run Test File" })
-vim.keymap.set("n", "<leader>do", ":lua require('neotest').output.open({ enter = true })<CR>", { silent = true, desc = "Open Test Output" })
-vim.keymap.set("n", "<leader>ds", ":lua require('neotest').summary.toggle()<CR>", { silent = true, desc = "Toggle Test Summary" })
+vim.keymap.set("n", "<leader>dt", function() ensure_neotest(); require('neotest').run.run() end, { silent = true, desc = "Run Nearest Test" })
+vim.keymap.set("n", "<leader>df", function() ensure_neotest(); require('neotest').run.run(vim.fn.expand('%')) end, { silent = true, desc = "Run Test File" })
+vim.keymap.set("n", "<leader>do", function() ensure_neotest(); require('neotest').output.open({ enter = true }) end, { silent = true, desc = "Open Test Output" })
+vim.keymap.set("n", "<leader>ds", function() ensure_neotest(); require('neotest').summary.toggle() end, { silent = true, desc = "Toggle Test Summary" })
 
 -- Spectre
 vim.keymap.set("n", "<leader>rr", function() require("spectre").open() end, { desc = "Replace in Files (Spectre)" })
@@ -160,4 +199,3 @@ vim.keymap.set("n", "<leader>pm", "<cmd>Grapple toggle_tags<CR>", { desc = "Grap
 vim.keymap.set("n", "<leader>pn", "<cmd>Grapple cycle_tags next<CR>", { desc = "Grapple: Next tag" })
 vim.keymap.set("n", "<leader>pp", "<cmd>Grapple cycle_tags previous<CR>", { desc = "Grapple: Previous tag" })
 vim.keymap.set("n", "<leader>ps", "<cmd>Grapple toggle_scopes<CR>", { desc = "Grapple: Toggle scope" })
-
