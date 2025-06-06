@@ -69,13 +69,13 @@ local function ensure_neotest()
 end
 
 -- Bufferline keymaps
-vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { desc = "Pick buffer" })
-vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { desc = "Close others" })
-vim.keymap.set("n", "<leader>bl", ":BufferLineMoveNext<CR>", { desc = "Move buffer right" })
-vim.keymap.set("n", "<leader>bh", ":BufferLineMovePrev<CR>", { desc = "Move buffer left" })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePick<CR>", { desc = "Pick buffer" })
+vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close others" })
+vim.keymap.set("n", "<leader>bl", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer right" })
+vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left" })
 
 -- Copilot keymaps
 vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" }) -- deprecate over toggle
@@ -83,27 +83,27 @@ vim.keymap.set("n", "<leader>ad", "<cmd>Copilot disable<CR>", { desc = "Copilot 
 vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "Copilot Status" })
 
 -- Git keymaps
-vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open Lazygit" })
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open Lazygit" })
 vim.keymap.set("n", "<leader>gS", function() Telescope("git_status") end, { desc = "Git status" })
 vim.keymap.set("n", "<leader>gc", function() Telescope("git_commits") end, { desc = "Git commits" })
 -- GitHub
 -- List & create issues/PRs
-vim.keymap.set("n", "<leader>ghi", ":Octo issue list<CR>", { desc = "GitHub: List Issues" })
-vim.keymap.set("n", "<leader>ghp", ":Octo pr list<CR>", { desc = "GitHub: List Pull Requests" })
-vim.keymap.set("n", "<leader>ghP", ":Octo pr create<CR>", { desc = "GitHub: Create Pull Request" })
-vim.keymap.set("n", "<leader>ghc", ":Octo pr checkout<CR>", { desc = "GitHub: Checkout PR" })
+vim.keymap.set("n", "<leader>ghi", "<cmd>Octo issue list<CR>", { desc = "GitHub: List Issues" })
+vim.keymap.set("n", "<leader>ghp", "<cmd>Octo pr list<CR>", { desc = "GitHub: List Pull Requests" })
+vim.keymap.set("n", "<leader>ghP", "<cmd>Octo pr create<CR>", { desc = "GitHub: Create Pull Request" })
+vim.keymap.set("n", "<leader>ghc", "<cmd>Octo pr checkout<CR>", { desc = "GitHub: Checkout PR" })
 -- Review actions
-vim.keymap.set("n", "<leader>ghs", ":Octo review start<CR>", { desc = "GitHub: Start Review" })
-vim.keymap.set("n", "<leader>gha", ":Octo review approve<CR>", { desc = "GitHub: Approve PR" })
-vim.keymap.set("n", "<leader>ghr", ":Octo review request_changes<CR>", { desc = "GitHub: Request Changes" })
-vim.keymap.set("n", "<leader>ghm", ":Octo review comment<CR>", { desc = "GitHub: Add Review Comment" })
-vim.keymap.set("n", "<leader>ghS", ":Octo review submit<CR>", { desc = "GitHub:Submit Review" })
+vim.keymap.set("n", "<leader>ghs", "<cmd>Octo review start<CR>", { desc = "GitHub: Start Review" })
+vim.keymap.set("n", "<leader>gha", "<cmd>Octo review approve<CR>", { desc = "GitHub: Approve PR" })
+vim.keymap.set("n", "<leader>ghr", "<cmd>Octo review request_changes<CR>", { desc = "GitHub: Request Changes" })
+vim.keymap.set("n", "<leader>ghm", "<cmd>Octo review comment<CR>", { desc = "GitHub: Add Review Comment" })
+vim.keymap.set("n", "<leader>ghS", "<cmd>Octo review submit<CR>", { desc = "GitHub:Submit Review" })
 -- Metadata management (labels, reviewers, assignees)
-vim.keymap.set("n", "<leader>ghl", ":Octo label add<CR>", { desc = "GitHub: Add Label" })
-vim.keymap.set("n", "<leader>ghu", ":Octo reviewer add<CR>", { desc = "GitHub: Add Reviewer" })
-vim.keymap.set("n", "<leader>ghg", ":Octo assignee add<CR>", { desc = "GitHub: Add Assignee" })
+vim.keymap.set("n", "<leader>ghl", "<cmd>Octo label add<CR>", { desc = "GitHub: Add Label" })
+vim.keymap.set("n", "<leader>ghu", "<cmd>Octo reviewer add<CR>", { desc = "GitHub: Add Reviewer" })
+vim.keymap.set("n", "<leader>ghg", "<cmd>Octo assignee add<CR>", { desc = "GitHub: Add Assignee" })
 -- Reactions
-vim.keymap.set("n", "<leader>ghh", ":Octo reaction add +1<CR>", { desc = "GitHub: Add 👍 Reaction" })
+vim.keymap.set("n", "<leader>ghh", "<cmd>Octo reaction add +1<CR>", { desc = "GitHub: Add 👍 Reaction" })
 
 -- Smartsplit keymaps
 local ss = require("smart-splits")
@@ -153,11 +153,11 @@ vim.keymap.set("n", "<leader>tn", NvimTreeToggle, { desc = "Toggle FileExplorer"
 vim.keymap.set("n", "<leader>to", OilToggle, { desc = "Toggle Oil", noremap = true, silent = true })
 
 -- Quickfix
-vim.keymap.set("n", "<leader>qo", ":copen<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qc", ":cclose<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qn", ":cnext<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qp", ":cprev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qq", ":lua vim.diagnostic.setqflist()<CR>:copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>", { noremap = true, silent = true })
 
 -- Debugging
 -- DAP
