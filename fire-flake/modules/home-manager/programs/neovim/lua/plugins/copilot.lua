@@ -1,4 +1,6 @@
-require("copilot").setup({
+local copilot = require("copilot")
+
+copilot.setup({
   suggestion = {
     enabled = true,
     auto_trigger = true,
@@ -27,8 +29,11 @@ require("copilot").setup({
   },
 })
 
+local M = {}
+
 vim.g.copilot_enabled = true  -- on by default
-function ToggleCopilot()
+
+function M.toggle()
   vim.g.copilot_enabled = not vim.g.copilot_enabled
   if vim.g.copilot_enabled then
     vim.cmd("Copilot enable")
@@ -36,3 +41,5 @@ function ToggleCopilot()
     vim.cmd("Copilot disable")
   end
 end
+
+return M

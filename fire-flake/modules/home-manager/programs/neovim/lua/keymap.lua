@@ -122,8 +122,12 @@ vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", { d
 -- Toggles
 vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
-vim.keymap.set("n", "<leader>tp", ToggleCopilot, { desc = "Toggle Copilot" })
-vim.keymap.set("n", "<leader>ta", ToggleAutoSave, { desc = "Toggle Autosave" })
+vim.keymap.set("n", "<leader>tp", function()
+  require("plugins.copilot").toggle()
+end, { desc = "Toggle Copilot" })
+vim.keymap.set("n", "<leader>ta", function()
+  require("plugins.autosave").toggle()
+end, { desc = "Toggle Autosave" })
 vim.keymap.set("n", "<leader>tn", ":NvimTreeToggle<CR>", { desc = "Toggle FileExplorer", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>to", "<cmd>Oil<CR>", { desc = "Toggle Oil", noremap = true, silent = true })
 

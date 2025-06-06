@@ -1,9 +1,15 @@
-require("auto-save").setup({
-  enabled = true, -- start auto-save when the plugin is loaded (i.e. after calling setup)
+
+local autosave = require("auto-save")
+
+autosave.setup({
+  enabled = true, -- start auto-save when the plugin is loaded
 })
 
+local M = {}
+
 vim.g.auto_save_enabled = true -- on by default
-function ToggleAutoSave()
+
+function M.toggle()
   if vim.g.auto_save_enabled == nil then
     vim.g.auto_save_enabled = true
   else
@@ -11,9 +17,11 @@ function ToggleAutoSave()
   end
 
   if vim.g.auto_save_enabled then
-    require("auto-save").on()
+    autosave.on()
   else
-    require("auto-save").off()
+    autosave.off()
   end
 end
+
+return M
 
