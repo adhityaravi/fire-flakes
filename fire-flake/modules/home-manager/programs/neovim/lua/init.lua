@@ -12,6 +12,10 @@ vim.opt.fillchars:append { vert = "│" }
 -- Always load theme
 require("plugins.colorscheme").load()
 
+-- UI plugins that must initialize on startup
+require("plugins.oil")
+require("plugins.alpha")
+
 -- helper for lazy loading modules on events
 local function lazy_require(event, module, opts)
   vim.api.nvim_create_autocmd(event, vim.tbl_extend("force", opts or {}, {
@@ -39,11 +43,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 local lazy_plugins = {
   "plugins.telescope",
   "plugins.nvimtree",
-  "plugins.oil",
   "plugins.dap",
   "plugins.neotest",
   "plugins.git",
-  "plugins.alpha",
   "plugins.persistence",
   "plugins.lualine",
   "plugins.bufferline",
