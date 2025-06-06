@@ -10,7 +10,6 @@ Hydra({
     invoke_on_body = true,
     hint = {
       position = 'top-right',
-      border = 'rounded',
       type = 'window',
     },
   },
