@@ -19,6 +19,7 @@ with pkgs.vimPlugins; [
   plenary-nvim
   nvim-web-devicons
   mini-nvim
+  lazy-nvim
 
   # UX
   which-key-nvim
