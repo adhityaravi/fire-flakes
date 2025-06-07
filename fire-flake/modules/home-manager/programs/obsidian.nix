@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nurPkgs ? {}, ... }:
 
 let
   cfg = config.custom.obsidian;
@@ -10,7 +10,9 @@ let
     types
     mkMerge;
 
+  # More complete list of core plugins to enable by default.
   defaultCorePlugins = [
+    "audio-recorder"
     "backlink"
     "bookmarks"
     "canvas"
@@ -21,14 +23,43 @@ let
     "file-recovery"
     "global-search"
     "graph"
+    "markdown-importer"
     "note-composer"
     "outgoing-link"
     "outline"
     "page-preview"
+    "properties"
+    "publish"
+    "random-note"
+    "slash-command"
+    "slides"
     "switcher"
+    "sync"
     "tag-pane"
     "templates"
     "word-count"
+    "workspaces"
+    "zk-prefixer"
+  ];
+
+  # Stylish defaults
+  defaultAppSettings = {
+    spellcheck = true;
+    zoomLevel = 1;
+  };
+
+  defaultAppearanceSettings = {
+    baseTheme = "dark";
+    accentColor = "teal";
+    translucency = true;
+  };
+
+  defaultCommunityPlugins = [
+    { pkg = nurPkgs.obsidian-tasks; enable = true; }
+  ];
+
+  defaultThemes = [
+    { pkg = nurPkgs.obsidian-everforest-enchanted; enable = true; }
   ];
 
 in {
@@ -93,12 +124,12 @@ in {
     programs.obsidian = {
       enable = true;
       defaultSettings = {
-        app = cfg.extraSettings.app;
-        appearance = cfg.extraSettings.appearance;
+        app = defaultAppSettings // cfg.extraSettings.app;
+        appearance = defaultAppearanceSettings // cfg.extraSettings.appearance;
         corePlugins = defaultCorePlugins ++ cfg.extraSettings.corePlugins;
-        communityPlugins = cfg.extraSettings.communityPlugins;
+        communityPlugins = defaultCommunityPlugins ++ cfg.extraSettings.communityPlugins;
         cssSnippets = cfg.extraSettings.cssSnippets;
-        themes = cfg.extraSettings.themes;
+        themes = defaultThemes ++ cfg.extraSettings.themes;
         hotkeys = cfg.extraSettings.hotkeys;
         extraFiles = cfg.extraSettings.extraFiles;
       };

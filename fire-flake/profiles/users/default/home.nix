@@ -5,6 +5,7 @@
     ../../../modules/home-manager/programs/git.nix
     ../../../modules/home-manager/programs/kitty.nix
     ../../../modules/home-manager/programs/neovim.nix
+    ../../../modules/home-manager/programs/obsidian.nix
   ];
 
   home = {
