@@ -5,6 +5,7 @@
     ../../../modules/home-manager/programs/git.nix
     ../../../modules/home-manager/programs/kitty.nix
     ../../../modules/home-manager/programs/neovim.nix
+    ../../../modules/home-manager/programs/obsidian.nix
   ];
 
   home = {
@@ -34,6 +35,12 @@
     #  vim.cmd("colorscheme catppuccin")
     #  require("catppuccin").setup({})
     #'';
+  };
+
+  # Obsidian
+  custom.obsidian = {
+    enable = true;
+    vaultPaths = userVars.obsidian.vaultPaths;
   };
 
 }
