@@ -38,6 +38,9 @@
   };
 
   # Obsidian
-  custom.obsidian.enable = true;
+  custom.obsidian = {
+    enable = true;
+    vaultPaths = userVars.obsidian.vaultPaths;
+  };
 
 }

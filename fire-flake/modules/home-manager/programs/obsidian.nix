@@ -55,11 +55,27 @@ let
   };
 
   defaultCommunityPlugins = [
-    { pkg = nurPkgs.obsidian-tasks; enable = true; }
+    { 
+      pkg = nurPkgs.obsidian-tasks; 
+      enable = true; 
+    }
+    {
+      pkg = nurPkgs.obsidian-minimal-settings;
+      enable = true;
+      settings = {
+        lightStyle = "minimal-light";
+        darkStyle = "minimal-dark";
+        lightScheme = "minimal-everforest-light";
+        darkScheme = "minimal-everforest-dark";
+      };
+    }
   ];
 
   defaultThemes = [
-    { pkg = nurPkgs.obsidian-everforest-enchanted; enable = true; }
+    { 
+      pkg = nurPkgs.obsidian-minimal; 
+      enable = true; 
+    }
   ];
 
 in {
