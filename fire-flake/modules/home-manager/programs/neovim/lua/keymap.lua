@@ -148,7 +148,6 @@ vim.keymap.set("n", "<leader>fd", function() Telescope("diagnostics") end, { des
 vim.keymap.set("n", "<leader>fm", function() Telescope("marks") end, { desc = "Jump to mark" })
 vim.keymap.set("n", "<leader>fp", function() Telescope("project") end, { desc = "Projects" })
 vim.keymap.set("n", "<leader>fs", function() Telescope("grapple tags") end, { desc = "Grapple tags" })
-vim.keymap.set("n", "<leader>fx", function() require("plugins.colorscheme").load() end, { desc = "Themes" })
 vim.keymap.set("n", "<leader>fz", function() require("plugins.colorscheme").pick() end, { desc = "Themes" })
 vim.keymap.set("n", "<leader>ft", function() Telescope("treesitter") end, { desc = "Symbols (Treesitter)" })
 

@@ -85,7 +85,7 @@ function M.palette(timeout)
     if vim.api.nvim_win_is_valid(win) then
       vim.api.nvim_win_close(win, true)
     end
-  end, timeout or 1500)
+  end, timeout or 3000)
 end
 
 function M.pick()
