@@ -64,7 +64,12 @@ with pkgs.vimPlugins; [
   cmp-buffer
   cmp-path
   cmp-cmdline
+  cmp_luasnip
+  copilot-cmp
   copilot-lua
+  luasnip
+  friendly-snippets
+  nvim-autopairs
 
   # Search and navigation
   telescope-nvim
