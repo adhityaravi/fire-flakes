@@ -37,4 +37,7 @@
     #'';
   };
 
+  # Obsidian
+  custom.obsidian.enable = true;
+
 }
