@@ -55,27 +55,22 @@ function M.palette(timeout)
     "Special",
   }
 
-  -- build a colored bar using two spaces for each group
-  local bar = {}
-  for _ = 1, #groups do
-    table.insert(bar, "  ")
-  end
-  local lines = { table.concat(bar, "") }
-  vim.list_extend(lines, groups)
+  local lines = groups
 
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_option(buf, "buftype", "nofile")
   vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
   for i, grp in ipairs(groups) do
-    -- color the group name
-    vim.api.nvim_buf_add_highlight(buf, -1, grp, i, 0, -1)
-    -- color the bar segment
-    vim.api.nvim_buf_add_highlight(buf, -1, grp, 0, (i - 1) * 2, i * 2)
+    vim.api.nvim_buf_add_highlight(buf, -1, grp, i - 1, 0, -1)
   end
 
-  local width = math.max(20, #groups * 2)
-  local height = #groups + 1
+  local width = 0
+  for _, grp in ipairs(groups) do
+    width = math.max(width, #grp)
+  end
+  width = math.max(20, width + 2)
+  local height = #groups
   local win = vim.api.nvim_open_win(buf, false, {
     relative = "editor",
     width = width,
