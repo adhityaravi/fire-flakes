@@ -1,16 +1,5 @@
 require("copilot").setup({
-  suggestion = {
-    enabled = true,
-    auto_trigger = true,
-    keymap = {
-      accept = "<C-g>",
-      accept_word = "<C-k>",
-      accept_line = "<C-l>",
-      next = "<C-;>",
-      prev = "<C-,>",
-      dismiss = "<C-x>",
-    },
-  },
+  suggestion = { enabled = false },
   panel = {
     enabled = false,
   },
