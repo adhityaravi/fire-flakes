@@ -2,11 +2,11 @@
   "nodes": {
     "fire-flake-config": {
       "locked": {
-        "lastModified": 1745782148,
-        "narHash": "sha256-Pi0ppNUHApsaKIOSebUuphgz1D176Ac6heegV3j/hk8=",
+        "lastModified": 1749324004,
+        "narHash": "sha256-52n+unFm/WFAgQqBmM8dfBEtY1hl6eWtydjHAo79IGY=",
         "ref": "refs/heads/main",
-        "rev": "81e1f4e1df4ced0e741c29b842d8b90d327fb35e",
-        "revCount": 3,
+        "rev": "ec8b751f801011195233f44e3bd63ac9e50eb5b0",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@github.com/adhityaravi/fire-flake-config-ivdi.git"
       },
@@ -52,11 +52,32 @@
         "type": "github"
       }
     },
+    "nur-packages": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749331108,
+        "narHash": "sha256-d9a3u91H7lTCWb2tBnoYY32V1iVkxU+tsae+ZxlJW1Y=",
+        "owner": "adhityaravi",
+        "repo": "nur-packages",
+        "rev": "8ba3cf822d6accce2b44a776cb745365222ba6e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "adhityaravi",
+        "repo": "nur-packages",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fire-flake-config": "fire-flake-config",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nur-packages": "nur-packages"
       }
     }
   },

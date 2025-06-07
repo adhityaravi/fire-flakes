@@ -11,6 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur-packages = {
+      url = "github:adhityaravi/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Optional: if disabled, an attempt will be made to load local configuration file from the vars directory. 
     # Note: Only ssh auth is tested.
     fire-flake-config = {
@@ -23,13 +28,16 @@
 
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs { 
+    pkgs = import nixpkgs {
         inherit system;
-        # allow codeium and copilot unfree packages
-        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "codeium" "copilot" "windsurf"];
+        overlays = [ (import "${inputs.nur-packages}/overlay.nix") ];
+        # allow codeium, copilot, windsurf and obsidian unfree packages
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "codeium" "copilot" "windsurf" "obsidian"];
     };
 
-    fireFlakeConfig = if inputs ? fire-flake-config then
+    nurPkgs = inputs.nur-packages.packages.${system};
+
+    fireFlakeConfig = if inputs ? fire-flake-config && inputs.fire-flake-config ? fireFlakeConfig then
       inputs.fire-flake-config.fireFlakeConfig
     else
       null;
@@ -57,7 +65,7 @@
         ];
 
         extraSpecialArgs = {
-          inherit userVars;
+          inherit userVars nurPkgs;
         };
       };
 
