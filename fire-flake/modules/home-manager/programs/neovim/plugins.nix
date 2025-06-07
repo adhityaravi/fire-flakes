@@ -67,7 +67,7 @@ with pkgs.vimPlugins; [
   cmp_luasnip
   copilot-cmp
   copilot-lua
-  LuaSnip
+  luasnip
   friendly-snippets
   nvim-autopairs
 
