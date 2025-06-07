@@ -106,8 +106,12 @@ function M.pick()
         if entry then
           local theme = entry.value
           actions.close(prompt_bufnr)
-          pcall(vim.cmd.colorscheme, theme)
-          M.palette()
+          local ok, err = pcall(vim.cmd.colorscheme, theme)
+          if ok then
+            M.palette()
+          else
+            vim.notify("Failed to load colorscheme: " .. theme .. " (" .. err .. ")", vim.log.levels.ERROR)
+          end
         else
           vim.notify("No colorscheme selected", vim.log.levels.WARN)
         end
