@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
-  kittyTheme = pkgs.fetchFromGitHub {
-    owner = "dexpota";
-    repo = "kitty-themes";
-    rev = "master";
-    sha256 = "sha256-RcDmZ1fbNX18+X3xCqqdRbD+XYPsgNte1IXUNt6CxIA=";
-  };
+  # kittyTheme = pkgs.fetchFromGitHub {
+  #   owner = "dexpota";
+  #   repo = "kitty-themes";
+  #   rev = "master";
+  #   sha256 = "sha256-RcDmZ1fbNX18+X3xCqqdRbD+XYPsgNte1IXUNt6CxIA=";
+  # };
 in {
   programs.kitty = {
     enable = false;
@@ -32,10 +32,12 @@ in {
   };
 
   home.packages = with pkgs; [
-    pkgs.nerdfonts
-    pkgs.libGL
-    pkgs.libglvnd
-    pkgs.mesa
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.jetbrains-mono
+    libGL
+    libglvnd
+    mesa
   ];
 
   home.sessionVariables = {
