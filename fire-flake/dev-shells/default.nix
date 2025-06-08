@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 pkgs.mkShell {
-  name = "nix-flake-devshell";
+  name = "dev-def"; # default development shell
 
   buildInputs = [
     # Core tooling
@@ -51,20 +51,9 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    echo "🚀 Welcome to your Nix Flake Development Shell!"
-    echo ""
-    echo "🛠️ Language servers and formatters are available for:"
-    echo "   • Nix    → alejandra, statix, nil"
-    echo "   • Python → ruff, pyright"
-    echo "   • Go     → gofmt/goimports, gopls"
-    echo "   • Rust   → rustfmt, clippy, rust-analyzer"
-    echo "   • Lua    → stylua, lua-language-server"
-    echo "   • YAML   → yamlfmt, yaml-language-server"
-    echo "   • Markdown → prettier, marksman"
-    echo ""
-    echo "💡 Common commands:"
-    echo "   nix fmt ."
-    echo "   statix check ."
-    echo "   home-manager switch --flake .#your-user"
-  '';
+    # Switch to fish shell if available
+    if command -v fish >/dev/null 2>&1; then
+      exec fish
+    fi
+ '';
 }

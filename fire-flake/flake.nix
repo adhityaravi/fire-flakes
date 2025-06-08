@@ -54,7 +54,7 @@
 
     # Dev shells
     devShells.${system} = {
-      default = import ./dev-shell/default.nix { inherit pkgs; };
+      default = import ./dev-shells/default.nix { inherit pkgs; };
     };
 
     homeConfigurations = {
