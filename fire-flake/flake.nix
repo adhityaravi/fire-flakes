@@ -50,6 +50,8 @@
 
   in
   {
+    #TODO: add a dev shell or homeconfig for charm-dev?
+
     # Dev shells
     devShells.${system} = {
       default = import ./dev-shell/default.nix { inherit pkgs; };
@@ -67,9 +69,7 @@
         extraSpecialArgs = {
           inherit userVars nurpkgs;
         };
-      };
-
-     # Canonical charming configuration 
+      };  
     };
   };
 }
