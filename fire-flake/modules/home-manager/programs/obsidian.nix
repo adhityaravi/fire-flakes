@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nurPkgs ? {}, ... }:
+{ config, lib, pkgs, nurpkgs ? {}, ... }:
 
 let
   cfg = config.custom.obsidian;
@@ -56,11 +56,11 @@ let
 
   defaultCommunityPlugins = [
     { 
-      pkg = nurPkgs.obsidian-tasks; 
+      pkg = nurpkgs.obsidian-tasks; 
       enable = true; 
     }
     {
-      pkg = nurPkgs.obsidian-minimal-settings;
+      pkg = nurpkgs.obsidian-minimal-settings;
       enable = true;
       settings = {
         lightStyle = "minimal-light";
@@ -73,7 +73,7 @@ let
 
   defaultThemes = [
     { 
-      pkg = nurPkgs.obsidian-minimal; 
+      pkg = nurpkgs.obsidian-minimal; 
       enable = true; 
     }
   ];

@@ -11,8 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur-packages = {
-      url = "github:adhityaravi/nur-packages";
+    nurpkgs = {
+      url = "github:adhityaravi/nurpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -30,12 +30,12 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
         inherit system;
-        overlays = [ (import "${inputs.nur-packages}/overlay.nix") ];
+        overlays = [ (import "${inputs.nurpkgs}/overlay.nix") ];
         # allow codeium, copilot, windsurf and obsidian unfree packages
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "codeium" "copilot" "windsurf" "obsidian"];
     };
 
-    nurPkgs = inputs.nur-packages.packages.${system};
+    nurpkgs = inputs.nurpkgs.packages.${system};
 
     fireFlakeConfig = if inputs ? fire-flake-config && inputs.fire-flake-config ? fireFlakeConfig then
       inputs.fire-flake-config.fireFlakeConfig
@@ -65,7 +65,7 @@
         ];
 
         extraSpecialArgs = {
-          inherit userVars nurPkgs;
+          inherit userVars nurpkgs;
         };
       };
 
