@@ -139,11 +139,13 @@ vim.keymap.set("n", "<leader>bk", ss.swap_buf_up, { desc = "Move buffer up" })
 vim.keymap.set("n", "<leader>bj", ss.swap_buf_down, { desc = "Move buffer down" })
 
 -- Spider motions
-local spider = require("spider")
-vim.keymap.set({"n", "o", "x"}, "w", function() spider.motion("w") end, { desc = "Spider-w" })
-vim.keymap.set({"n", "o", "x"}, "e", function() spider.motion("e") end, { desc = "Spider-e" })
-vim.keymap.set({"n", "o", "x"}, "b", function() spider.motion("b") end, { desc = "Spider-b" })
-vim.keymap.set({"n", "o", "x"}, "ge", function() spider.motion("ge") end, { desc = "Spider-ge" })
+local function SpiderMotion(motion)
+  require("spider").motion(motion)
+end
+vim.keymap.set({ "n", "o", "x" }, "w", function() SpiderMotion("w") end, { desc = "Spider-w" })
+vim.keymap.set({ "n", "o", "x" }, "e", function() SpiderMotion("e") end, { desc = "Spider-e" })
+vim.keymap.set({ "n", "o", "x" }, "b", function() SpiderMotion("b") end, { desc = "Spider-b" })
+vim.keymap.set({ "n", "o", "x" }, "ge", function() SpiderMotion("ge") end, { desc = "Spider-ge" })
 
 -- Telescope keymaps
 vim.keymap.set("n", "<leader>ff", function() Telescope("find_files") end, { desc = "Find files" })
@@ -165,7 +167,10 @@ vim.keymap.set("n", "<leader>ld", function() Telescope("lsp_definitions") end, {
 vim.keymap.set("n", "<leader>lr", function() Telescope("lsp_references") end, { desc = "LSP References" })
 vim.keymap.set("n", "<leader>li", function() Telescope("lsp_implementations") end, { desc = "LSP Implementations" })
 vim.keymap.set("n", "<leader>ls", function() Telescope("lsp_document_symbols") end, { desc = "Document Symbols" })
-vim.keymap.set({"n", "v"}, "<leader>lf", function() require("conform").format({ lsp_fallback = true }) end, { desc = "Format code" })
+local function FormatCode()
+  require("conform").format({ lsp_fallback = true })
+end
+vim.keymap.set({ "n", "v" }, "<leader>lf", FormatCode, { desc = "Format code" })
 vim.keymap.set("n", "<leader>lF", "<cmd>ConformInfo<CR>", { desc = "Formatters info" })
 
 -- Toggles
@@ -213,22 +218,28 @@ vim.keymap.set("n", "<leader>pp", "<cmd>Grapple cycle_tags previous<CR>", { desc
 vim.keymap.set("n", "<leader>ps", "<cmd>Grapple toggle_scopes<CR>", { desc = "Grapple: Toggle scope" })
 
 -- Kulala REST client
-vim.keymap.set({"n", "v"}, "<leader>Rs", function() require("kulala").run() end, { desc = "HTTP: Send request" })
-vim.keymap.set({"n", "v"}, "<leader>Ra", function() require("kulala").run_all() end, { desc = "HTTP: Send all" })
-vim.keymap.set("n", "<leader>Rb", function() require("kulala").scratchpad() end, { desc = "HTTP: Scratchpad" })
-vim.keymap.set("n", "<leader>Ro", function() require("kulala").open() end, { desc = "HTTP: Open Kulala" })
-vim.keymap.set("n", "<leader>Rt", function() require("kulala").toggle_view() end, { desc = "HTTP: Toggle headers/body" })
-vim.keymap.set("n", "<leader>RS", function() require("kulala").show_stats() end, { desc = "HTTP: Show stats" })
-vim.keymap.set("n", "<leader>Rq", function() require("kulala").close() end, { desc = "HTTP: Close window" })
-vim.keymap.set("n", "<leader>Rc", function() require("kulala").copy() end, { desc = "HTTP: Copy as cURL" })
-vim.keymap.set("n", "<leader>RC", function() require("kulala").from_curl() end, { desc = "HTTP: Paste from cURL" })
-vim.keymap.set("n", "<leader>Ri", function() require("kulala").inspect() end, { desc = "HTTP: Inspect request" })
-vim.keymap.set("n", "<leader>Rr", function() require("kulala").replay() end, { desc = "HTTP: Replay request" })
-vim.keymap.set("n", "<leader>Rf", function() require("kulala").search() end, { desc = "HTTP: Find request" })
-vim.keymap.set("n", "<leader>Rn", function() require("kulala").jump_next() end, { desc = "HTTP: Next request" })
-vim.keymap.set("n", "<leader>Rp", function() require("kulala").jump_prev() end, { desc = "HTTP: Prev request" })
-vim.keymap.set("n", "<leader>Re", function() require("kulala").set_selected_env() end, { desc = "HTTP: Select env" })
+local function Kulala(action)
+  return function()
+    require("kulala")[action]()
+  end
+end
+
+vim.keymap.set({ "n", "v" }, "<leader>Rs", Kulala("run"), { desc = "HTTP: Send request" })
+vim.keymap.set({ "n", "v" }, "<leader>Ra", Kulala("run_all"), { desc = "HTTP: Send all" })
+vim.keymap.set("n", "<leader>Rb", Kulala("scratchpad"), { desc = "HTTP: Scratchpad" })
+vim.keymap.set("n", "<leader>Ro", Kulala("open"), { desc = "HTTP: Open Kulala" })
+vim.keymap.set("n", "<leader>Rt", Kulala("toggle_view"), { desc = "HTTP: Toggle headers/body" })
+vim.keymap.set("n", "<leader>RS", Kulala("show_stats"), { desc = "HTTP: Show stats" })
+vim.keymap.set("n", "<leader>Rq", Kulala("close"), { desc = "HTTP: Close window" })
+vim.keymap.set("n", "<leader>Rc", Kulala("copy"), { desc = "HTTP: Copy as cURL" })
+vim.keymap.set("n", "<leader>RC", Kulala("from_curl"), { desc = "HTTP: Paste from cURL" })
+vim.keymap.set("n", "<leader>Ri", Kulala("inspect"), { desc = "HTTP: Inspect request" })
+vim.keymap.set("n", "<leader>Rr", Kulala("replay"), { desc = "HTTP: Replay request" })
+vim.keymap.set("n", "<leader>Rf", Kulala("search"), { desc = "HTTP: Find request" })
+vim.keymap.set("n", "<leader>Rn", Kulala("jump_next"), { desc = "HTTP: Next request" })
+vim.keymap.set("n", "<leader>Rp", Kulala("jump_prev"), { desc = "HTTP: Prev request" })
+vim.keymap.set("n", "<leader>Re", Kulala("set_selected_env"), { desc = "HTTP: Select env" })
 vim.keymap.set("n", "<leader>Ru", function() require("lua.kulala.ui.auth_manager").open_auth_config() end, { desc = "HTTP: Auth config" })
-vim.keymap.set("n", "<leader>Rg", function() require("kulala").download_graphql_schema() end, { desc = "HTTP: Download GQL schema" })
-vim.keymap.set("n", "<leader>Rx", function() require("kulala").scripts_clear_global() end, { desc = "HTTP: Clear globals" })
-vim.keymap.set("n", "<leader>RX", function() require("kulala").clear_cached_files() end, { desc = "HTTP: Clear cache" })
+vim.keymap.set("n", "<leader>Rg", Kulala("download_graphql_schema"), { desc = "HTTP: Download GQL schema" })
+vim.keymap.set("n", "<leader>Rx", Kulala("scripts_clear_global"), { desc = "HTTP: Clear globals" })
+vim.keymap.set("n", "<leader>RX", Kulala("clear_cached_files"), { desc = "HTTP: Clear cache" })
