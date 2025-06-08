@@ -22,11 +22,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749243446,
-        "narHash": "sha256-P1gumhZN5N9q+39ndePHYrtwOwY1cGx+VoXGl+vTm7A=",
+        "lastModified": 1749358668,
+        "narHash": "sha256-V91nN4Q9ZwX0N+Gzu+F8SnvzMcdURYnMcIvpfLQzD5M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2d7d65f65b61fdfce23278e59ca266ddd0ef0a36",
+        "rev": "06451df423dd5e555f39857438ffc16c5b765862",
         "type": "github"
       },
       "original": {
@@ -52,23 +52,23 @@
         "type": "github"
       }
     },
-    "nur-packages": {
+    "nurpkgs": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1749331108,
-        "narHash": "sha256-d9a3u91H7lTCWb2tBnoYY32V1iVkxU+tsae+ZxlJW1Y=",
+        "lastModified": 1749379618,
+        "narHash": "sha256-OduTBqUcvvYo8ECwT50Q5g5kgB5b6NVgI+x2RKODmtg=",
         "owner": "adhityaravi",
-        "repo": "nur-packages",
-        "rev": "8ba3cf822d6accce2b44a776cb745365222ba6e0",
+        "repo": "nurpkgs",
+        "rev": "33950bb0881ec89e6aebc217b11b3a0cb47fda99",
         "type": "github"
       },
       "original": {
         "owner": "adhityaravi",
-        "repo": "nur-packages",
+        "repo": "nurpkgs",
         "type": "github"
       }
     },
@@ -77,7 +77,7 @@
         "fire-flake-config": "fire-flake-config",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nur-packages": "nur-packages"
+        "nurpkgs": "nurpkgs"
       }
     }
   },
