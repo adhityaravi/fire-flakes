@@ -10,14 +10,14 @@ vim.opt.termguicolors = true
 vim.opt.fillchars:append { vert = "│" } -- or "┃", "▕", etc.
 
 -- Always load theme
-require("plugins.colorscheme").load()
+require("plugins.theme.colorscheme").load()
 
 -- Load all plugin configs - order matters
 -- #todo: lazyload
 
 -- UI plugins that must initialize on startup
-require("plugins.oil")
-require("plugins.alpha")
+require("plugins.explorer.oil")
+require("plugins.ui.alpha")
 
 -- helper for lazy loading modules on events
 local function lazy_require(event, module, opts)
@@ -28,9 +28,9 @@ local function lazy_require(event, module, opts)
 end
 
 -- core plugins
-lazy_require("BufReadPost", "plugins.treesitter")
+lazy_require("BufReadPost", "plugins.syntax.treesitter")
 lazy_require("BufReadPost", "plugins.lsp")
-lazy_require("InsertEnter", "plugins.cmp")
+lazy_require("InsertEnter", "plugins.completion.cmp")
 
 -- fire VeryLazy event shortly after UI loads
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -44,32 +44,32 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 -- plugins that can wait
 local lazy_plugins = {
-  "plugins.telescope",
-  "plugins.nvimtree",
-  "plugins.dap",
-  "plugins.neotest",
-  "plugins.git",
-  "plugins.persistence",
-  "plugins.lualine",
-  "plugins.bufferline",
-  "plugins.copilot",
-  "plugins.luasnip",
-  "plugins.toggleterm",
-  "plugins.autopairs",
-  "plugins.smartsplits",
-  "plugins.spectre",
-  "plugins.grapple",
-  "plugins.spider",
-  "plugins.todocomments",
-  "plugins.conform",
-  "plugins.indentblankline",
-  "plugins.leap",
-  "plugins.octo",
-  "plugins.noice",
-  "plugins.autosave",
-  "plugins.bqf",
-  "plugins.hydra",
-  -- require("plugins.miniclue")  -- whichkey alternative
+  "plugins.search.telescope",
+  "plugins.explorer.nvimtree",
+  "plugins.debug.dap",
+  "plugins.debug.neotest",
+  "plugins.git.git",
+  "plugins.ui.persistence",
+  "plugins.ui.lualine",
+  "plugins.ui.bufferline",
+  "plugins.completion.copilot",
+  "plugins.completion.luasnip",
+  "plugins.ui.toggleterm",
+  "plugins.completion.autopairs",
+  "plugins.ui.smartsplits",
+  "plugins.search.spectre",
+  "plugins.search.grapple",
+  "plugins.completion.spider",
+  "plugins.search.todocomments",
+  "plugins.formatting.conform",
+  "plugins.ui.indentblankline",
+  "plugins.ui.leap",
+  "plugins.git.octo",
+  "plugins.ux.noice",
+  "plugins.ux.autosave",
+  "plugins.debug.bqf",
+  "plugins.ux.hydra",
+  -- require("plugins.ux.miniclue")  -- whichkey alternative
 }
 
 for _, mod in ipairs(lazy_plugins) do

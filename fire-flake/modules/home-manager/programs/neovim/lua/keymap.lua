@@ -45,41 +45,41 @@ wk.add({
 
 -- helper wrappers for lazy plugins
 local function Telescope(cmd)
-  require("plugins.telescope")
+  require("plugins.search.telescope")
   vim.cmd("Telescope " .. cmd)
 end
 
 local function ToggleTermCmd()
-  require("plugins.toggleterm")
+  require("plugins.ui.toggleterm")
   vim.cmd("ToggleTerm")
 end
 
 local function NvimTreeToggle()
-  require("plugins.nvimtree")
+  require("plugins.explorer.nvimtree")
   vim.cmd("NvimTreeToggle")
 end
 
 local function OilToggle()
-  require("plugins.oil")
+  require("plugins.explorer.oil")
   vim.cmd("Oil")
 end
 
 local function ToggleCopilotCmd()
-  require("plugins.copilot")
+  require("plugins.completion.copilot")
   ToggleCopilot()
 end
 
 local function ToggleAutoSaveCmd()
-  require("plugins.autosave")
+  require("plugins.ux.autosave")
   ToggleAutoSave()
 end
 
 local function ensure_dap()
-  require("plugins.dap")
+  require("plugins.debug.dap")
 end
 
 local function ensure_neotest()
-  require("plugins.neotest")
+  require("plugins.debug.neotest")
 end
 
 -- Bufferline keymaps
@@ -155,7 +155,7 @@ vim.keymap.set("n", "<leader>fd", function() Telescope("diagnostics") end, { des
 vim.keymap.set("n", "<leader>fm", function() Telescope("marks") end, { desc = "Jump to mark" })
 vim.keymap.set("n", "<leader>fp", function() Telescope("project") end, { desc = "Projects" })
 vim.keymap.set("n", "<leader>fs", function() Telescope("grapple tags") end, { desc = "Grapple tags" })
-vim.keymap.set("n", "<leader>fz", function() require("plugins.colorscheme").pick() end, { desc = "Themes" })
+vim.keymap.set("n", "<leader>fz", function() require("plugins.theme.colorscheme").pick() end, { desc = "Themes" })
 vim.keymap.set("n", "<leader>ft", function() Telescope("treesitter") end, { desc = "Symbols (Treesitter)" })
 vim.keymap.set("n", "<leader>fT", "<cmd>TodoTelescope<CR>", { desc = "Search TODOs" })
 
