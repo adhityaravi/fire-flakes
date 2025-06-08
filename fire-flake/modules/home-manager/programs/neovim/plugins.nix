@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, nurpkgs ? {} }:
 
 let
   treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
@@ -25,7 +25,7 @@ with pkgs.vimPlugins; [
   noice-nvim
   hydra-nvim
   auto-save-nvim
-  pkgs.kulala-nvim
+  nurpkgs.kulala-nvim
 
   # UI
   lualine-nvim
