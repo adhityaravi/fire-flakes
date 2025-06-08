@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, nurpkgs ? {} }:
 
 let
   treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
@@ -25,6 +25,7 @@ with pkgs.vimPlugins; [
   noice-nvim
   hydra-nvim
   auto-save-nvim
+  nurpkgs.kulala-nvim
 
   # UI
   lualine-nvim
@@ -34,6 +35,7 @@ with pkgs.vimPlugins; [
   bufferline-nvim
   smart-splits-nvim
   leap-nvim
+  indent-blankline-nvim
   # theme
   catppuccin-nvim
   rose-pine
@@ -67,12 +69,17 @@ with pkgs.vimPlugins; [
   luasnip
   friendly-snippets
   nvim-autopairs
+  nvim-spider
+
+  # Formatting
+  conform-nvim
 
   # Search and navigation
   telescope-nvim
   telescope-project-nvim
   telescope-file-browser-nvim
   nvim-spectre
+  todo-comments-nvim
   grapple-nvim
 
   # File explorer

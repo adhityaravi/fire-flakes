@@ -15,18 +15,19 @@ wk.setup({
 --   loop = true,
 -- })
 wk.add({
-  { "<leader>h", group = "hydras", icon = "󰕚"},
-  { "<leader>g", group = "git", icon = "󰊢"},
-  { "<leader>gh", group = "github", icon = ""},
-  { "<leader>b", group = "buffers", icon = "󰈚"},
-  { "<leader>l", group = "lsp", icon = "󰒕"},
-  { "<leader>f", group = "fuzzy-find", icon = "󰭎"},
-  { "<leader>a", group = "ai-assist", icon = ""},
-  { "<leader>t", group = "toggles", icon = ""},
-  { "<leader>d", group = "debug", icon = ""},
-  { "<leader>r", group = "find-replace", icon = ""},
-  { "<leader>p", group = "grapple", icon = "󰄛"},
-  { "<leader>q", group = "quick-fix", icon = ""},
+  { "<leader>h", group = "hydras", icon = "󰕚" },
+  { "<leader>g", group = "git", icon = "󰊢" },
+  { "<leader>gh", group = "github", icon = "" },
+  { "<leader>b", group = "buffers", icon = "󰈚" },
+  { "<leader>l", group = "lsp", icon = "󰒕" },
+  { "<leader>f", group = "fuzzy-find", icon = "󰭎" },
+  { "<leader>a", group = "ai-assist", icon = "" },
+  { "<leader>t", group = "toggles", icon = "" },
+  { "<leader>d", group = "debug", icon = "" },
+  { "<leader>r", group = "find-replace", icon = "" },
+  { "<leader>p", group = "grapple", icon = "󰄛" },
+  { "<leader>q", group = "quick-fix", icon = "" },
+  { "<leader>R", group = "REST", icon = "󰖆" },
 })
 
 -- mini-clue setup. personally prefer which-key, but internet says this is better.
@@ -45,41 +46,41 @@ wk.add({
 
 -- helper wrappers for lazy plugins
 local function Telescope(cmd)
-  require("plugins.telescope")
+  require("plugins.search.telescope")
   vim.cmd("Telescope " .. cmd)
 end
 
 local function ToggleTermCmd()
-  require("plugins.toggleterm")
+  require("plugins.ui.toggleterm")
   vim.cmd("ToggleTerm")
 end
 
 local function NvimTreeToggle()
-  require("plugins.nvimtree")
+  require("plugins.explorer.nvimtree")
   vim.cmd("NvimTreeToggle")
 end
 
 local function OilToggle()
-  require("plugins.oil")
+  require("plugins.explorer.oil")
   vim.cmd("Oil")
 end
 
 local function ToggleCopilotCmd()
-  require("plugins.copilot")
+  require("plugins.completion.copilot")
   ToggleCopilot()
 end
 
 local function ToggleAutoSaveCmd()
-  require("plugins.autosave")
+  require("plugins.ux.autosave")
   ToggleAutoSave()
 end
 
 local function ensure_dap()
-  require("plugins.dap")
+  require("plugins.debug.dap")
 end
 
 local function ensure_neotest()
-  require("plugins.neotest")
+  require("plugins.debug.neotest")
 end
 
 -- Bufferline keymaps
@@ -92,7 +93,7 @@ vim.keymap.set("n", "<leader>bl", "<cmd>BufferLineMoveNext<CR>", { desc = "Move 
 vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left" })
 
 -- Copilot keymaps
-vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" }) -- deprecate over toggle
+vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" })   -- deprecate over toggle
 vim.keymap.set("n", "<leader>ad", "<cmd>Copilot disable<CR>", { desc = "Copilot Disable" }) -- deprecate over toggle
 vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "Copilot Status" })
 
@@ -137,25 +138,41 @@ vim.keymap.set("n", "<leader>bl", ss.swap_buf_right, { desc = "Move buffer right
 vim.keymap.set("n", "<leader>bk", ss.swap_buf_up, { desc = "Move buffer up" })
 vim.keymap.set("n", "<leader>bj", ss.swap_buf_down, { desc = "Move buffer down" })
 
+-- Spider motions
+local function SpiderMotion(motion)
+  require("spider").motion(motion)
+end
+vim.keymap.set({ "n", "o", "x" }, "w", function() SpiderMotion("w") end, { desc = "Spider-w" })
+vim.keymap.set({ "n", "o", "x" }, "e", function() SpiderMotion("e") end, { desc = "Spider-e" })
+vim.keymap.set({ "n", "o", "x" }, "b", function() SpiderMotion("b") end, { desc = "Spider-b" })
+vim.keymap.set({ "n", "o", "x" }, "ge", function() SpiderMotion("ge") end, { desc = "Spider-ge" })
+
 -- Telescope keymaps
 vim.keymap.set("n", "<leader>ff", function() Telescope("find_files") end, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fr", function() Telescope("oldfiles") end, { desc = "Recent files" })
 vim.keymap.set("n", "<leader>fg", function() Telescope("live_grep") end, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fb", function() Telescope("buffers") end, { desc = "Open buffers" })
 vim.keymap.set("n", "<leader>fh", function() Telescope("help_tags") end, { desc = "Help tags" })
-vim.keymap.set("n", "<leader>fc", function() Telescope("current_buffer_fuzzy_find") end, { desc = "Find in current buffer" })
+vim.keymap.set("n", "<leader>fc", function() Telescope("current_buffer_fuzzy_find") end,
+  { desc = "Find in current buffer" })
 vim.keymap.set("n", "<leader>fd", function() Telescope("diagnostics") end, { desc = "Diagnostics" })
 vim.keymap.set("n", "<leader>fm", function() Telescope("marks") end, { desc = "Jump to mark" })
 vim.keymap.set("n", "<leader>fp", function() Telescope("project") end, { desc = "Projects" })
 vim.keymap.set("n", "<leader>fs", function() Telescope("grapple tags") end, { desc = "Grapple tags" })
-vim.keymap.set("n", "<leader>fz", function() require("plugins.colorscheme").pick() end, { desc = "Themes" })
+vim.keymap.set("n", "<leader>fz", function() require("plugins.theme.colorscheme").pick() end, { desc = "Themes" })
 vim.keymap.set("n", "<leader>ft", function() Telescope("treesitter") end, { desc = "Symbols (Treesitter)" })
+vim.keymap.set("n", "<leader>fT", "<cmd>TodoTelescope<CR>", { desc = "Search TODOs" })
 
 -- LSP
 vim.keymap.set("n", "<leader>ld", function() Telescope("lsp_definitions") end, { desc = "LSP Definitions" })
 vim.keymap.set("n", "<leader>lr", function() Telescope("lsp_references") end, { desc = "LSP References" })
 vim.keymap.set("n", "<leader>li", function() Telescope("lsp_implementations") end, { desc = "LSP Implementations" })
 vim.keymap.set("n", "<leader>ls", function() Telescope("lsp_document_symbols") end, { desc = "Document Symbols" })
+local function FormatCode()
+  require("conform").format({ lsp_fallback = true })
+end
+vim.keymap.set({ "n", "v" }, "<leader>lf", FormatCode, { desc = "Format code" })
+vim.keymap.set("n", "<leader>lF", "<cmd>ConformInfo<CR>", { desc = "Formatters info" })
 
 -- Toggles
 vim.keymap.set("n", "<leader>tt", ToggleTermCmd, { desc = "Toggle Terminal" })
@@ -164,32 +181,55 @@ vim.keymap.set("n", "<leader>tp", ToggleCopilotCmd, { desc = "Toggle Copilot" })
 vim.keymap.set("n", "<leader>ta", ToggleAutoSaveCmd, { desc = "Toggle Autosave" })
 vim.keymap.set("n", "<leader>tn", NvimTreeToggle, { desc = "Toggle FileExplorer", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>to", OilToggle, { desc = "Toggle Oil", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ti", "<cmd>IBLToggle<CR>", { desc = "Toggle Indent Guides" })
 
 -- Quickfix
 vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>",
+  { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qt", "<cmd>TodoQuickFix<CR>", { noremap = true, silent = true, desc = "Todo QuickFix" })
 
 -- Debugging
 -- DAP
-vim.keymap.set("n", "<leader>dd", function() ensure_dap(); require'dap'.continue() end, { silent = true, desc = "Start/Continue Debug" })
-vim.keymap.set("n", "<leader>db", function() ensure_dap(); require'dap'.toggle_breakpoint() end, { silent = true, desc = "Toggle Breakpoint" })
-vim.keymap.set("n", "<leader>do", function() ensure_dap(); require'dap'.step_over() end, { silent = true, desc = "Step Over" })
-vim.keymap.set("n", "<leader>di", function() ensure_dap(); require'dap'.step_into() end, { silent = true, desc = "Step Into" })
-vim.keymap.set("n", "<leader>du", function() ensure_dap(); require'dapui'.toggle() end, { silent = true, desc = "Toggle DAP UI" })
+vim.keymap.set("n", "<leader>dd", function()
+  ensure_dap(); require 'dap'.continue()
+end, { silent = true, desc = "Start/Continue Debug" })
+vim.keymap.set("n", "<leader>db", function()
+  ensure_dap(); require 'dap'.toggle_breakpoint()
+end, { silent = true, desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>do", function()
+  ensure_dap(); require 'dap'.step_over()
+end, { silent = true, desc = "Step Over" })
+vim.keymap.set("n", "<leader>di", function()
+  ensure_dap(); require 'dap'.step_into()
+end, { silent = true, desc = "Step Into" })
+vim.keymap.set("n", "<leader>du", function()
+  ensure_dap(); require 'dapui'.toggle()
+end, { silent = true, desc = "Toggle DAP UI" })
 -- Neotest
-vim.keymap.set("n", "<leader>dt", function() ensure_neotest(); require('neotest').run.run() end, { silent = true, desc = "Run Nearest Test" })
-vim.keymap.set("n", "<leader>df", function() ensure_neotest(); require('neotest').run.run(vim.fn.expand('%')) end, { silent = true, desc = "Run Test File" })
-vim.keymap.set("n", "<leader>do", function() ensure_neotest(); require('neotest').output.open({ enter = true }) end, { silent = true, desc = "Open Test Output" })
-vim.keymap.set("n", "<leader>ds", function() ensure_neotest(); require('neotest').summary.toggle() end, { silent = true, desc = "Toggle Test Summary" })
+vim.keymap.set("n", "<leader>dt", function()
+  ensure_neotest(); require('neotest').run.run()
+end, { silent = true, desc = "Run Nearest Test" })
+vim.keymap.set("n", "<leader>df", function()
+  ensure_neotest(); require('neotest').run.run(vim.fn.expand('%'))
+end, { silent = true, desc = "Run Test File" })
+vim.keymap.set("n", "<leader>do", function()
+  ensure_neotest(); require('neotest').output.open({ enter = true })
+end, { silent = true, desc = "Open Test Output" })
+vim.keymap.set("n", "<leader>ds", function()
+  ensure_neotest(); require('neotest').summary.toggle()
+end, { silent = true, desc = "Toggle Test Summary" })
 
 -- Spectre
 vim.keymap.set("n", "<leader>rr", function() require("spectre").open() end, { desc = "Replace in Files (Spectre)" })
-vim.keymap.set("n", "<leader>rw", function() require("spectre").open_visual({ select_word = true }) end, { desc = "Replace Word Under Cursor" })
+vim.keymap.set("n", "<leader>rw", function() require("spectre").open_visual({ select_word = true }) end,
+  { desc = "Replace Word Under Cursor" })
 vim.keymap.set("v", "<leader>rw", function() require("spectre").open_visual() end, { desc = "Replace Selection" })
-vim.keymap.set("n", "<leader>rf", function() require("spectre").open_file_search() end, { desc = "Replace in Current File" })
+vim.keymap.set("n", "<leader>rf", function() require("spectre").open_file_search() end,
+  { desc = "Replace in Current File" })
 
 -- Grapple
 vim.keymap.set("n", "<leader>pa", "<cmd>Grapple tag<CR>", { desc = "Grapple: Add tag" })
@@ -198,3 +238,30 @@ vim.keymap.set("n", "<leader>pm", "<cmd>Grapple toggle_tags<CR>", { desc = "Grap
 vim.keymap.set("n", "<leader>pn", "<cmd>Grapple cycle_tags next<CR>", { desc = "Grapple: Next tag" })
 vim.keymap.set("n", "<leader>pp", "<cmd>Grapple cycle_tags previous<CR>", { desc = "Grapple: Previous tag" })
 vim.keymap.set("n", "<leader>ps", "<cmd>Grapple toggle_scopes<CR>", { desc = "Grapple: Toggle scope" })
+
+-- Kulala REST client
+local function Kulala(action)
+  return function()
+    require("kulala")[action]()
+  end
+end
+
+vim.keymap.set({ "n", "v" }, "<leader>Rs", Kulala("run"), { desc = "HTTP: Send request" })
+vim.keymap.set({ "n", "v" }, "<leader>Ra", Kulala("run_all"), { desc = "HTTP: Send all" })
+vim.keymap.set("n", "<leader>Rb", Kulala("scratchpad"), { desc = "HTTP: Scratchpad" })
+vim.keymap.set("n", "<leader>Ro", Kulala("open"), { desc = "HTTP: Open Kulala" })
+vim.keymap.set("n", "<leader>Rt", Kulala("toggle_view"), { desc = "HTTP: Toggle headers/body" })
+vim.keymap.set("n", "<leader>RS", Kulala("show_stats"), { desc = "HTTP: Show stats" })
+vim.keymap.set("n", "<leader>Rq", Kulala("close"), { desc = "HTTP: Close window" })
+vim.keymap.set("n", "<leader>Rc", Kulala("copy"), { desc = "HTTP: Copy as cURL" })
+vim.keymap.set("n", "<leader>RC", Kulala("from_curl"), { desc = "HTTP: Paste from cURL" })
+vim.keymap.set("n", "<leader>Ri", Kulala("inspect"), { desc = "HTTP: Inspect request" })
+vim.keymap.set("n", "<leader>Rr", Kulala("replay"), { desc = "HTTP: Replay request" })
+vim.keymap.set("n", "<leader>Rf", Kulala("search"), { desc = "HTTP: Find request" })
+vim.keymap.set("n", "<leader>Rn", Kulala("jump_next"), { desc = "HTTP: Next request" })
+vim.keymap.set("n", "<leader>Rp", Kulala("jump_prev"), { desc = "HTTP: Prev request" })
+vim.keymap.set("n", "<leader>Re", Kulala("set_selected_env"), { desc = "HTTP: Select env" })
+vim.keymap.set("n", "<leader>Ru", function() require("lua.kulala.ui.auth_manager").open_auth_config() end, { desc = "HTTP: Auth config" })
+vim.keymap.set("n", "<leader>Rg", Kulala("download_graphql_schema"), { desc = "HTTP: Download GQL schema" })
+vim.keymap.set("n", "<leader>Rx", Kulala("scripts_clear_global"), { desc = "HTTP: Clear globals" })
+vim.keymap.set("n", "<leader>RX", Kulala("clear_cached_files"), { desc = "HTTP: Clear cache" })

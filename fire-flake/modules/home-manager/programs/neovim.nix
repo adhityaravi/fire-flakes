@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nurpkgs ? {}, ... }:
 
 let
   cfg = config.custom.neovim;
-  pluginList = (import ./neovim/plugins.nix { inherit pkgs; });
+  pluginList = (import ./neovim/plugins.nix { inherit pkgs nurpkgs; });
 in
 {
   options.custom.neovim = {
