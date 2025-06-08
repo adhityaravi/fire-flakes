@@ -15,19 +15,19 @@ wk.setup({
 --   loop = true,
 -- })
 wk.add({
-  { "<leader>h", group = "hydras", icon = "󰕚"},
-  { "<leader>g", group = "git", icon = "󰊢"},
-  { "<leader>gh", group = "github", icon = ""},
-  { "<leader>b", group = "buffers", icon = "󰈚"},
-  { "<leader>l", group = "lsp", icon = "󰒕"},
-  { "<leader>f", group = "fuzzy-find", icon = "󰭎"},
-  { "<leader>a", group = "ai-assist", icon = ""},
-  { "<leader>t", group = "toggles", icon = ""},
-  { "<leader>d", group = "debug", icon = ""},
-  { "<leader>r", group = "find-replace", icon = ""},
-  { "<leader>p", group = "grapple", icon = "󰄛"},
-  { "<leader>q", group = "quick-fix", icon = ""},
-  { "<leader>R", group = "rest", icon = "󰖆"},
+  { "<leader>h", group = "hydras", icon = "󰕚" },
+  { "<leader>g", group = "git", icon = "󰊢" },
+  { "<leader>gh", group = "github", icon = "" },
+  { "<leader>b", group = "buffers", icon = "󰈚" },
+  { "<leader>l", group = "lsp", icon = "󰒕" },
+  { "<leader>f", group = "fuzzy-find", icon = "󰭎" },
+  { "<leader>a", group = "ai-assist", icon = "" },
+  { "<leader>t", group = "toggles", icon = "" },
+  { "<leader>d", group = "debug", icon = "" },
+  { "<leader>r", group = "find-replace", icon = "" },
+  { "<leader>p", group = "grapple", icon = "󰄛" },
+  { "<leader>q", group = "quick-fix", icon = "" },
+  { "<leader>R", group = "REST", icon = "󰖆" },
 })
 
 -- mini-clue setup. personally prefer which-key, but internet says this is better.
@@ -93,7 +93,7 @@ vim.keymap.set("n", "<leader>bl", "<cmd>BufferLineMoveNext<CR>", { desc = "Move 
 vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left" })
 
 -- Copilot keymaps
-vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" }) -- deprecate over toggle
+vim.keymap.set("n", "<leader>ae", "<cmd>Copilot enable<CR>", { desc = "Copilot Enable" })   -- deprecate over toggle
 vim.keymap.set("n", "<leader>ad", "<cmd>Copilot disable<CR>", { desc = "Copilot Disable" }) -- deprecate over toggle
 vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "Copilot Status" })
 
@@ -153,7 +153,8 @@ vim.keymap.set("n", "<leader>fr", function() Telescope("oldfiles") end, { desc =
 vim.keymap.set("n", "<leader>fg", function() Telescope("live_grep") end, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fb", function() Telescope("buffers") end, { desc = "Open buffers" })
 vim.keymap.set("n", "<leader>fh", function() Telescope("help_tags") end, { desc = "Help tags" })
-vim.keymap.set("n", "<leader>fc", function() Telescope("current_buffer_fuzzy_find") end, { desc = "Find in current buffer" })
+vim.keymap.set("n", "<leader>fc", function() Telescope("current_buffer_fuzzy_find") end,
+  { desc = "Find in current buffer" })
 vim.keymap.set("n", "<leader>fd", function() Telescope("diagnostics") end, { desc = "Diagnostics" })
 vim.keymap.set("n", "<leader>fm", function() Telescope("marks") end, { desc = "Jump to mark" })
 vim.keymap.set("n", "<leader>fp", function() Telescope("project") end, { desc = "Projects" })
@@ -187,27 +188,48 @@ vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>",
+  { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qt", "<cmd>TodoQuickFix<CR>", { noremap = true, silent = true, desc = "Todo QuickFix" })
 
 -- Debugging
 -- DAP
-vim.keymap.set("n", "<leader>dd", function() ensure_dap(); require'dap'.continue() end, { silent = true, desc = "Start/Continue Debug" })
-vim.keymap.set("n", "<leader>db", function() ensure_dap(); require'dap'.toggle_breakpoint() end, { silent = true, desc = "Toggle Breakpoint" })
-vim.keymap.set("n", "<leader>do", function() ensure_dap(); require'dap'.step_over() end, { silent = true, desc = "Step Over" })
-vim.keymap.set("n", "<leader>di", function() ensure_dap(); require'dap'.step_into() end, { silent = true, desc = "Step Into" })
-vim.keymap.set("n", "<leader>du", function() ensure_dap(); require'dapui'.toggle() end, { silent = true, desc = "Toggle DAP UI" })
+vim.keymap.set("n", "<leader>dd", function()
+  ensure_dap(); require 'dap'.continue()
+end, { silent = true, desc = "Start/Continue Debug" })
+vim.keymap.set("n", "<leader>db", function()
+  ensure_dap(); require 'dap'.toggle_breakpoint()
+end, { silent = true, desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>do", function()
+  ensure_dap(); require 'dap'.step_over()
+end, { silent = true, desc = "Step Over" })
+vim.keymap.set("n", "<leader>di", function()
+  ensure_dap(); require 'dap'.step_into()
+end, { silent = true, desc = "Step Into" })
+vim.keymap.set("n", "<leader>du", function()
+  ensure_dap(); require 'dapui'.toggle()
+end, { silent = true, desc = "Toggle DAP UI" })
 -- Neotest
-vim.keymap.set("n", "<leader>dt", function() ensure_neotest(); require('neotest').run.run() end, { silent = true, desc = "Run Nearest Test" })
-vim.keymap.set("n", "<leader>df", function() ensure_neotest(); require('neotest').run.run(vim.fn.expand('%')) end, { silent = true, desc = "Run Test File" })
-vim.keymap.set("n", "<leader>do", function() ensure_neotest(); require('neotest').output.open({ enter = true }) end, { silent = true, desc = "Open Test Output" })
-vim.keymap.set("n", "<leader>ds", function() ensure_neotest(); require('neotest').summary.toggle() end, { silent = true, desc = "Toggle Test Summary" })
+vim.keymap.set("n", "<leader>dt", function()
+  ensure_neotest(); require('neotest').run.run()
+end, { silent = true, desc = "Run Nearest Test" })
+vim.keymap.set("n", "<leader>df", function()
+  ensure_neotest(); require('neotest').run.run(vim.fn.expand('%'))
+end, { silent = true, desc = "Run Test File" })
+vim.keymap.set("n", "<leader>do", function()
+  ensure_neotest(); require('neotest').output.open({ enter = true })
+end, { silent = true, desc = "Open Test Output" })
+vim.keymap.set("n", "<leader>ds", function()
+  ensure_neotest(); require('neotest').summary.toggle()
+end, { silent = true, desc = "Toggle Test Summary" })
 
 -- Spectre
 vim.keymap.set("n", "<leader>rr", function() require("spectre").open() end, { desc = "Replace in Files (Spectre)" })
-vim.keymap.set("n", "<leader>rw", function() require("spectre").open_visual({ select_word = true }) end, { desc = "Replace Word Under Cursor" })
+vim.keymap.set("n", "<leader>rw", function() require("spectre").open_visual({ select_word = true }) end,
+  { desc = "Replace Word Under Cursor" })
 vim.keymap.set("v", "<leader>rw", function() require("spectre").open_visual() end, { desc = "Replace Selection" })
-vim.keymap.set("n", "<leader>rf", function() require("spectre").open_file_search() end, { desc = "Replace in Current File" })
+vim.keymap.set("n", "<leader>rf", function() require("spectre").open_file_search() end,
+  { desc = "Replace in Current File" })
 
 -- Grapple
 vim.keymap.set("n", "<leader>pa", "<cmd>Grapple tag<CR>", { desc = "Grapple: Add tag" })
