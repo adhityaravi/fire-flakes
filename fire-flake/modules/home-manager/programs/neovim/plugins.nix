@@ -37,14 +37,11 @@ with pkgs.vimPlugins; [
   # theme
   catppuccin-nvim
   rose-pine
-  tokyonight-nvim
   kanagawa-nvim
   oxocarbon-nvim
   everforest
   gruvbox-nvim
   nightfox-nvim
-  edge
-  onedarkpro-nvim
   dracula-nvim
   monokai-pro-nvim
   cyberdream-nvim
