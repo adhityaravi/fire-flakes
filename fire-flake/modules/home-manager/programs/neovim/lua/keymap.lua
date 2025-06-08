@@ -165,6 +165,7 @@ vim.keymap.set("n", "<leader>lr", function() Telescope("lsp_references") end, { 
 vim.keymap.set("n", "<leader>li", function() Telescope("lsp_implementations") end, { desc = "LSP Implementations" })
 vim.keymap.set("n", "<leader>ls", function() Telescope("lsp_document_symbols") end, { desc = "Document Symbols" })
 vim.keymap.set({"n", "v"}, "<leader>lf", function() require("conform").format({ lsp_fallback = true }) end, { desc = "Format code" })
+vim.keymap.set("n", "<leader>lF", "<cmd>ConformInfo<CR>", { desc = "Formatters info" })
 
 -- Toggles
 vim.keymap.set("n", "<leader>tt", ToggleTermCmd, { desc = "Toggle Terminal" })
