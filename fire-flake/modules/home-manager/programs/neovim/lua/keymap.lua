@@ -137,6 +137,13 @@ vim.keymap.set("n", "<leader>bl", ss.swap_buf_right, { desc = "Move buffer right
 vim.keymap.set("n", "<leader>bk", ss.swap_buf_up, { desc = "Move buffer up" })
 vim.keymap.set("n", "<leader>bj", ss.swap_buf_down, { desc = "Move buffer down" })
 
+-- Spider motions
+local spider = require("spider")
+vim.keymap.set({"n", "o", "x"}, "w", function() spider.motion("w") end, { desc = "Spider-w" })
+vim.keymap.set({"n", "o", "x"}, "e", function() spider.motion("e") end, { desc = "Spider-e" })
+vim.keymap.set({"n", "o", "x"}, "b", function() spider.motion("b") end, { desc = "Spider-b" })
+vim.keymap.set({"n", "o", "x"}, "ge", function() spider.motion("ge") end, { desc = "Spider-ge" })
+
 -- Telescope keymaps
 vim.keymap.set("n", "<leader>ff", function() Telescope("find_files") end, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fr", function() Telescope("oldfiles") end, { desc = "Recent files" })
@@ -150,12 +157,14 @@ vim.keymap.set("n", "<leader>fp", function() Telescope("project") end, { desc = 
 vim.keymap.set("n", "<leader>fs", function() Telescope("grapple tags") end, { desc = "Grapple tags" })
 vim.keymap.set("n", "<leader>fz", function() require("plugins.colorscheme").pick() end, { desc = "Themes" })
 vim.keymap.set("n", "<leader>ft", function() Telescope("treesitter") end, { desc = "Symbols (Treesitter)" })
+vim.keymap.set("n", "<leader>fT", "<cmd>TodoTelescope<CR>", { desc = "Search TODOs" })
 
 -- LSP
 vim.keymap.set("n", "<leader>ld", function() Telescope("lsp_definitions") end, { desc = "LSP Definitions" })
 vim.keymap.set("n", "<leader>lr", function() Telescope("lsp_references") end, { desc = "LSP References" })
 vim.keymap.set("n", "<leader>li", function() Telescope("lsp_implementations") end, { desc = "LSP Implementations" })
 vim.keymap.set("n", "<leader>ls", function() Telescope("lsp_document_symbols") end, { desc = "Document Symbols" })
+vim.keymap.set({"n", "v"}, "<leader>lf", function() require("conform").format({ lsp_fallback = true }) end, { desc = "Format code" })
 
 -- Toggles
 vim.keymap.set("n", "<leader>tt", ToggleTermCmd, { desc = "Toggle Terminal" })
@@ -164,6 +173,7 @@ vim.keymap.set("n", "<leader>tp", ToggleCopilotCmd, { desc = "Toggle Copilot" })
 vim.keymap.set("n", "<leader>ta", ToggleAutoSaveCmd, { desc = "Toggle Autosave" })
 vim.keymap.set("n", "<leader>tn", NvimTreeToggle, { desc = "Toggle FileExplorer", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>to", OilToggle, { desc = "Toggle Oil", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ti", "<cmd>IBLToggle<CR>", { desc = "Toggle Indent Guides" })
 
 -- Quickfix
 vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { noremap = true, silent = true })
@@ -171,6 +181,7 @@ vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { noremap = true, silent = 
 vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qt", "<cmd>TodoQuickFix<CR>", { noremap = true, silent = true, desc = "Todo QuickFix" })
 
 -- Debugging
 -- DAP
