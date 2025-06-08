@@ -67,6 +67,7 @@ local lazy_plugins = {
   "plugins.git.octo",
   "plugins.ux.noice",
   "plugins.ux.autosave",
+  "plugins.ux.kulala",
   "plugins.debug.bqf",
   "plugins.ux.hydra",
   -- require("plugins.ux.miniclue")  -- whichkey alternative

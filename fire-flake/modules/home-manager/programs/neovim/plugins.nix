@@ -25,6 +25,7 @@ with pkgs.vimPlugins; [
   noice-nvim
   hydra-nvim
   auto-save-nvim
+  pkgs.kulala-nvim
 
   # UI
   lualine-nvim

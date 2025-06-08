@@ -210,3 +210,8 @@ vim.keymap.set("n", "<leader>pm", "<cmd>Grapple toggle_tags<CR>", { desc = "Grap
 vim.keymap.set("n", "<leader>pn", "<cmd>Grapple cycle_tags next<CR>", { desc = "Grapple: Next tag" })
 vim.keymap.set("n", "<leader>pp", "<cmd>Grapple cycle_tags previous<CR>", { desc = "Grapple: Previous tag" })
 vim.keymap.set("n", "<leader>ps", "<cmd>Grapple toggle_scopes<CR>", { desc = "Grapple: Toggle scope" })
+
+-- Kulala REST client
+vim.keymap.set({"n", "v"}, "<leader>Rs", function() require("kulala").run() end, { desc = "HTTP: Send request" })
+vim.keymap.set({"n", "v"}, "<leader>Ra", function() require("kulala").run_all() end, { desc = "HTTP: Send all" })
+vim.keymap.set("n", "<leader>Rb", function() require("kulala").scratchpad() end, { desc = "HTTP: Scratchpad" })
