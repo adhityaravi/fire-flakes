@@ -27,6 +27,7 @@ wk.add({
   { "<leader>r", group = "find-replace", icon = ""},
   { "<leader>p", group = "grapple", icon = "󰄛"},
   { "<leader>q", group = "quick-fix", icon = ""},
+  { "<leader>R", group = "rest", icon = "󰖆"},
 })
 
 -- mini-clue setup. personally prefer which-key, but internet says this is better.
@@ -215,3 +216,19 @@ vim.keymap.set("n", "<leader>ps", "<cmd>Grapple toggle_scopes<CR>", { desc = "Gr
 vim.keymap.set({"n", "v"}, "<leader>Rs", function() require("kulala").run() end, { desc = "HTTP: Send request" })
 vim.keymap.set({"n", "v"}, "<leader>Ra", function() require("kulala").run_all() end, { desc = "HTTP: Send all" })
 vim.keymap.set("n", "<leader>Rb", function() require("kulala").scratchpad() end, { desc = "HTTP: Scratchpad" })
+vim.keymap.set("n", "<leader>Ro", function() require("kulala").open() end, { desc = "HTTP: Open Kulala" })
+vim.keymap.set("n", "<leader>Rt", function() require("kulala").toggle_view() end, { desc = "HTTP: Toggle headers/body" })
+vim.keymap.set("n", "<leader>RS", function() require("kulala").show_stats() end, { desc = "HTTP: Show stats" })
+vim.keymap.set("n", "<leader>Rq", function() require("kulala").close() end, { desc = "HTTP: Close window" })
+vim.keymap.set("n", "<leader>Rc", function() require("kulala").copy() end, { desc = "HTTP: Copy as cURL" })
+vim.keymap.set("n", "<leader>RC", function() require("kulala").from_curl() end, { desc = "HTTP: Paste from cURL" })
+vim.keymap.set("n", "<leader>Ri", function() require("kulala").inspect() end, { desc = "HTTP: Inspect request" })
+vim.keymap.set("n", "<leader>Rr", function() require("kulala").replay() end, { desc = "HTTP: Replay request" })
+vim.keymap.set("n", "<leader>Rf", function() require("kulala").search() end, { desc = "HTTP: Find request" })
+vim.keymap.set("n", "<leader>Rn", function() require("kulala").jump_next() end, { desc = "HTTP: Next request" })
+vim.keymap.set("n", "<leader>Rp", function() require("kulala").jump_prev() end, { desc = "HTTP: Prev request" })
+vim.keymap.set("n", "<leader>Re", function() require("kulala").set_selected_env() end, { desc = "HTTP: Select env" })
+vim.keymap.set("n", "<leader>Ru", function() require("lua.kulala.ui.auth_manager").open_auth_config() end, { desc = "HTTP: Auth config" })
+vim.keymap.set("n", "<leader>Rg", function() require("kulala").download_graphql_schema() end, { desc = "HTTP: Download GQL schema" })
+vim.keymap.set("n", "<leader>Rx", function() require("kulala").scripts_clear_global() end, { desc = "HTTP: Clear globals" })
+vim.keymap.set("n", "<leader>RX", function() require("kulala").clear_cached_files() end, { desc = "HTTP: Clear cache" })
