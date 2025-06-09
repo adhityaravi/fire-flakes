@@ -52,3 +52,8 @@ require("gitsigns").setup {
 
 require("lazygit.utils").project_root_dir()  -- optional
 
+-- Keymaps
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open Lazygit" })
+vim.keymap.set("n", "<leader>gS", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
+vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits" })
+
