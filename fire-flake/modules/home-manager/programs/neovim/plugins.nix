@@ -26,6 +26,8 @@ with pkgs.vimPlugins; [
   hydra-nvim
   auto-save-nvim
   nurpkgs.kulala-nvim
+  nurpkgs.goose-nvim
+  pkgs.vimPlugins.render-markdown-nvim
 
   # UI
   lualine-nvim
