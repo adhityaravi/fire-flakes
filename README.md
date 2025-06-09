@@ -39,6 +39,7 @@ It aims to:
 - 🏠 **Home Manager** based user-level setup
 - 🔐 **Private configuration repo support**
 - 🔥 **DevShells** for consistent development tooling
+- 🪿 **Goose CLI** integration for on-machine AI automation
 
 ---
 
