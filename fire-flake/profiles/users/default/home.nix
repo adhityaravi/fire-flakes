@@ -44,7 +44,7 @@
   custom.neovim = {
     enable = true;
 
-    obsidianWorkspaces = userVars.obsidian.vaultPaths;
+    obsidianVaultPaths = userVars.obsidian.vaultPaths;
 
     # Example: Add extra plugins
     #extraPlugins = with pkgs.vimPlugins; [

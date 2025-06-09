@@ -17,10 +17,10 @@ in
       default = "";
       description = "Extra Lua config to be injected after core setup.";
     };
-    obsidianWorkspaces = lib.mkOption {
+    obsidianVaultPaths = lib.mkOption {
       type = with lib.types; listOf str;
       default = [];
-      description = "Paths to Obsidian vaults used by obsidian.nvim.";
+      description = "Paths to Obsidian vaults (relative to the home directory) used by obsidian.nvim.";
     };
   };
 
@@ -50,8 +50,8 @@ in
       plugins = pluginList ++ cfg.extraPlugins;
       extraLuaConfig = let
         workspacesLua = builtins.concatStringsSep "\n" (
-          map (path: "  { name = \"" + (builtins.baseNameOf path) + "\", path = \"" + path + "\" },")
-            cfg.obsidianWorkspaces
+          map (path: "  { name = \"" + (builtins.baseNameOf path) + "\", path = \"~/" + path + "\" },")
+            cfg.obsidianVaultPaths
         );
       in ''
         vim.g.fireflake_obsidian_workspaces = {
