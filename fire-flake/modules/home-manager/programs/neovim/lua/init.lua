@@ -72,6 +72,7 @@ local lazy_plugins = {
   "plugins.ux.noice",
   "plugins.ux.autosave",
   "plugins.ux.kulala",
+  "plugins.ux.goose",
   "plugins.debug.bqf",
   "plugins.ux.hydra",
   "plugins.ux.whichkey",

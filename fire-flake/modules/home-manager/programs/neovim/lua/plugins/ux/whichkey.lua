@@ -21,4 +21,5 @@ wk.add({
   { "<leader>q", group = "quick-fix", icon = "" },
   { "<leader>R", group = "REST", icon = "󰖆" },
   { "<leader>o", group = "obsidian", icon = "󰍉" },
+  { "<leader>A", group = "goose", icon = "🪿" },
 })
