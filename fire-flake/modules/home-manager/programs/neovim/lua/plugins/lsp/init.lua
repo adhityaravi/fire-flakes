@@ -36,3 +36,20 @@ for _, lsp in ipairs(servers) do
 
   lspconfig[lsp].setup(opts)
 end
+
+-- Keymaps
+local function telescope(cmd)
+  vim.cmd("Telescope " .. cmd)
+end
+
+vim.keymap.set("n", "<leader>ld", function() telescope("lsp_definitions") end, { desc = "LSP Definitions" })
+vim.keymap.set("n", "<leader>lr", function() telescope("lsp_references") end, { desc = "LSP References" })
+vim.keymap.set("n", "<leader>li", function() telescope("lsp_implementations") end, { desc = "LSP Implementations" })
+vim.keymap.set("n", "<leader>ls", function() telescope("lsp_document_symbols") end, { desc = "Document Symbols" })
+
+local function FormatCode()
+  require("conform").format({ lsp_fallback = true })
+end
+
+vim.keymap.set({ "n", "v" }, "<leader>lf", FormatCode, { desc = "Format code" })
+vim.keymap.set("n", "<leader>lF", "<cmd>ConformInfo<CR>", { desc = "Formatters info" })

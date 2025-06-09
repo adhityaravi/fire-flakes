@@ -1,14 +1,20 @@
-{ config, lib, pkgs, nurpkgs ? {}, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  nurpkgs ? {},
+  ...
+}: let
   cfg = config.custom.obsidian;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
     types
-    mkMerge;
+    mkMerge
+    ;
 
   # More complete list of core plugins to enable by default.
   defaultCorePlugins = [
@@ -55,29 +61,26 @@ let
   };
 
   defaultCommunityPlugins = [
-    { 
-      pkg = nurpkgs.obsidian-tasks; 
-      enable = true; 
+    {
+      pkg = nurpkgs.obsidian-tasks;
+      enable = true;
     }
     {
       pkg = nurpkgs.obsidian-minimal-settings;
       enable = true;
-      settings = {
-        lightStyle = "minimal-light";
-        darkStyle = "minimal-dark";
-        lightScheme = "minimal-everforest-light";
-        darkScheme = "minimal-everforest-dark";
-      };
+    }
+    {
+      pkg = nurpkgs.obsidian-dataview;
+      enable = true;
     }
   ];
 
   defaultThemes = [
-    { 
-      pkg = nurpkgs.obsidian-minimal; 
-      enable = true; 
+    {
+      pkg = nurpkgs.obsidian-minimal;
+      enable = true;
     }
   ];
-
 in {
   options.custom.obsidian = {
     enable = mkEnableOption "Enable Obsidian with sensible defaults";
@@ -91,12 +94,12 @@ in {
         options = {
           app = mkOption {
             type = types.attrsOf types.anything;
-            default = { };
+            default = {};
             description = "Extra app settings to merge with defaults.";
           };
           appearance = mkOption {
             type = types.attrsOf types.anything;
-            default = { };
+            default = {};
             description = "Extra appearance settings.";
           };
           corePlugins = mkOption {
@@ -121,17 +124,17 @@ in {
           };
           hotkeys = mkOption {
             type = types.raw;
-            default = { };
+            default = {};
             description = "Hotkeys to configure.";
           };
           extraFiles = mkOption {
             type = types.raw;
-            default = { };
+            default = {};
             description = "Extra files to include in vaults.";
           };
         };
       };
-      default = { };
+      default = {};
       description = "Settings to override or append to the defaults.";
     };
   };
@@ -162,4 +165,3 @@ in {
     };
   };
 }
-

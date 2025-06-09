@@ -7,3 +7,6 @@ require("oil").setup({
   delete_to_trash = true,
 })
 
+-- Keymap
+vim.keymap.set("n", "<leader>to", "<cmd>Oil<CR>", { desc = "Toggle Oil", noremap = true, silent = true })
+

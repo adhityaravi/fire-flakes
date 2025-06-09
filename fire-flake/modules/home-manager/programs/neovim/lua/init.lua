@@ -1,4 +1,7 @@
 -- General settings
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.expandtab = true
@@ -59,6 +62,7 @@ local lazy_plugins = {
   "plugins.ui.smartsplits",
   "plugins.search.spectre",
   "plugins.search.grapple",
+  "plugins.notes.obsidian",
   "plugins.completion.spider",
   "plugins.search.todocomments",
   "plugins.formatting.conform",
@@ -70,6 +74,7 @@ local lazy_plugins = {
   "plugins.ux.kulala",
   "plugins.debug.bqf",
   "plugins.ux.hydra",
+  "plugins.ux.whichkey",
   -- require("plugins.ux.miniclue")  -- whichkey alternative
 }
 
@@ -77,6 +82,4 @@ for _, mod in ipairs(lazy_plugins) do
   lazy_require("User", mod, { pattern = "VeryLazy" })
 end
 
--- keymaps
-require("keymap")
 
