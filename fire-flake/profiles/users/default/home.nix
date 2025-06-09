@@ -1,13 +1,17 @@
-{ config, lib, pkgs, userVars, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  userVars,
+  ...
+}: {
   imports = [
     ../../../modules/home-manager/programs/git.nix
     ../../../modules/home-manager/programs/kitty.nix
     ../../../modules/home-manager/programs/neovim.nix
     ../../../modules/home-manager/programs/obsidian.nix
+    ../../../modules/home-manager/programs/goose.nix
     ../../../modules/home-manager/common.nix
-
   ];
 
   home = {
@@ -64,4 +68,17 @@
     vaultPaths = userVars.obsidian.vaultPaths;
   };
 
+  # Goose CLI
+  custom.goose = {
+    enable = true;
+    # lead model
+    leadProvider = "github_copilot";
+    leadModel = "gpt-4.1";
+    # worker model
+    provider = "anthropic";
+    model = "claude-4-sonnet";
+    #extraEnv = {
+    #  GOOSE_TEMPERATURE = "0.7";
+    #};
+  };
 }
