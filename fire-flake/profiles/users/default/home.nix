@@ -6,12 +6,31 @@
     ../../../modules/home-manager/programs/kitty.nix
     ../../../modules/home-manager/programs/neovim.nix
     ../../../modules/home-manager/programs/obsidian.nix
+    ../../../modules/home-manager/common.nix
+
   ];
 
   home = {
     username = userVars.username;
     homeDirectory = userVars.homeDirectory;
     stateVersion = userVars.stateVersion;
+  };
+
+  # Add your own tool selections if needed
+  # Its also possible to override the default common tools. Not recommended.
+  custom.common = {
+    enable = true;
+    # Example: add extra tools
+    #userTools = with pkgs; [
+    #  git
+    #  jq
+    #  curl
+    #  wget
+    #  direnv
+    #  nixpkgs-fmt
+    #  shellcheck
+    #  tree
+    #];
   };
 
   # Git
@@ -24,6 +43,8 @@
   # Neovim
   custom.neovim = {
     enable = true;
+
+    obsidianVaultPaths = userVars.obsidian.vaultPaths;
 
     # Example: Add extra plugins
     #extraPlugins = with pkgs.vimPlugins; [

@@ -17,3 +17,6 @@ function ToggleAutoSave()
   end
 end
 
+-- Keymap
+vim.keymap.set("n", "<leader>ta", ToggleAutoSave, { desc = "Toggle Autosave" })
+

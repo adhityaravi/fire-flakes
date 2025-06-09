@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, nurpkgs ? {} }:
 
 let
   treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
@@ -25,6 +25,7 @@ with pkgs.vimPlugins; [
   noice-nvim
   hydra-nvim
   auto-save-nvim
+  nurpkgs.kulala-nvim
 
   # UI
   lualine-nvim
@@ -34,17 +35,15 @@ with pkgs.vimPlugins; [
   bufferline-nvim
   smart-splits-nvim
   leap-nvim
+  indent-blankline-nvim
   # theme
   catppuccin-nvim
   rose-pine
-  tokyonight-nvim
   kanagawa-nvim
   oxocarbon-nvim
   everforest
   gruvbox-nvim
   nightfox-nvim
-  edge
-  onedarkpro-nvim
   dracula-nvim
   monokai-pro-nvim
   cyberdream-nvim
@@ -64,17 +63,29 @@ with pkgs.vimPlugins; [
   cmp-buffer
   cmp-path
   cmp-cmdline
+  cmp_luasnip
+  copilot-cmp
   copilot-lua
+  luasnip
+  friendly-snippets
+  nvim-autopairs
+  nvim-spider
+
+  # Formatting
+  conform-nvim
 
   # Search and navigation
   telescope-nvim
   telescope-project-nvim
   telescope-file-browser-nvim
   nvim-spectre
+  todo-comments-nvim
   grapple-nvim
+  obsidian-nvim
 
   # File explorer
   nvim-tree-lua
+  oil-nvim
 
   # Debugging
   nvim-dap

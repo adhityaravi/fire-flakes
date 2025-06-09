@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nurpkgs ? {}, ... }:
 
 let
   cfg = config.custom.neovim;
-  pluginList = (import ./neovim/plugins.nix { inherit pkgs; });
+  pluginList = (import ./neovim/plugins.nix { inherit pkgs nurpkgs; });
 in
 {
   options.custom.neovim = {
@@ -16,6 +16,11 @@ in
       type = lib.types.lines;
       default = "";
       description = "Extra Lua config to be injected after core setup.";
+    };
+    obsidianVaultPaths = lib.mkOption {
+      type = with lib.types; listOf str;
+      default = [];
+      description = "Paths to Obsidian vaults (relative to the home directory) used by obsidian.nvim.";
     };
   };
 
@@ -41,16 +46,18 @@ in
         nodePackages.dockerfile-language-server-nodejs
         nodePackages.yaml-language-server
         lua-language-server
-        jetbrains-mono
-        ripgrep
-        fd
-        fzf
-        unzip
-        lazygit
-        gh
       ];
       plugins = pluginList ++ cfg.extraPlugins;
-      extraLuaConfig = ''
+      extraLuaConfig = let
+        workspacesLua = builtins.concatStringsSep "\n" (
+          map (path: "  { name = \"" + (builtins.baseNameOf path) + "\", path = \"~/" + path + "\" },")
+            cfg.obsidianVaultPaths
+        );
+      in ''
+        vim.g.fireflake_obsidian_workspaces = {
+${workspacesLua}
+        }
+
         ${builtins.readFile ./neovim/lua/init.lua}
         ${cfg.extraLuaConfig}
       '';

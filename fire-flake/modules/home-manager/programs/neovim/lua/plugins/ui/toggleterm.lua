@@ -10,3 +10,7 @@ require("toggleterm").setup({
   persist_size = false,
 })
 
+-- Keymaps
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal Normal Mode" })
+
