@@ -6,6 +6,7 @@
     ../../../modules/home-manager/programs/kitty.nix
     ../../../modules/home-manager/programs/neovim.nix
     ../../../modules/home-manager/programs/obsidian.nix
+    ../../../modules/home-manager/programs/goose.nix
     ../../../modules/home-manager/common.nix
 
   ];
@@ -62,6 +63,17 @@
   custom.obsidian = {
     enable = true;
     vaultPaths = userVars.obsidian.vaultPaths;
+  };
+
+  # Goose CLI
+  custom.goose = {
+    enable = false;
+    # Example configuration:
+    #provider = "openai";
+    #model = "gpt-4o";
+    #extraEnv = {
+    #  GOOSE_TEMPERATURE = "0.7";
+    #};
   };
 
 }
