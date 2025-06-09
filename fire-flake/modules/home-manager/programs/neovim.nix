@@ -41,13 +41,6 @@ in
         nodePackages.dockerfile-language-server-nodejs
         nodePackages.yaml-language-server
         lua-language-server
-        jetbrains-mono
-        ripgrep
-        fd
-        fzf
-        unzip
-        lazygit
-        gh
       ];
       plugins = pluginList ++ cfg.extraPlugins;
       extraLuaConfig = ''
