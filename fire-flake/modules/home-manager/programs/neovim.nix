@@ -43,7 +43,16 @@ in
         lua-language-server
       ];
       plugins = pluginList ++ cfg.extraPlugins;
-      extraLuaConfig = ''
+      extraLuaConfig = let
+        workspacesLua = builtins.concatStringsSep "\n" (
+          map (path: "  { name = \"" + (builtins.baseNameOf path) + "\", path = \"" + path + "\" },")
+            config.custom.obsidian.vaultPaths
+        );
+      in ''
+        vim.g.fireflake_obsidian_workspaces = {
+${workspacesLua}
+        }
+
         ${builtins.readFile ./neovim/lua/init.lua}
         ${cfg.extraLuaConfig}
       '';

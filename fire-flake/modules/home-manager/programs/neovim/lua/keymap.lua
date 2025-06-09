@@ -28,6 +28,7 @@ wk.add({
   { "<leader>p", group = "grapple", icon = "󰄛" },
   { "<leader>q", group = "quick-fix", icon = "" },
   { "<leader>R", group = "REST", icon = "󰖆" },
+  { "<leader>o", group = "obsidian", icon = "󰍉" },
 })
 
 -- mini-clue setup. personally prefer which-key, but internet says this is better.
@@ -238,6 +239,25 @@ vim.keymap.set("n", "<leader>pm", "<cmd>Grapple toggle_tags<CR>", { desc = "Grap
 vim.keymap.set("n", "<leader>pn", "<cmd>Grapple cycle_tags next<CR>", { desc = "Grapple: Next tag" })
 vim.keymap.set("n", "<leader>pp", "<cmd>Grapple cycle_tags previous<CR>", { desc = "Grapple: Previous tag" })
 vim.keymap.set("n", "<leader>ps", "<cmd>Grapple toggle_scopes<CR>", { desc = "Grapple: Toggle scope" })
+
+-- Obsidian
+vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian" })
+vim.keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick switch" })
+vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search notes" })
+vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Show backlinks" })
+vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New note" })
+vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<CR>", { desc = "Open today's note" })
+vim.keymap.set("n", "<leader>oy", "<cmd>ObsidianYesterday<CR>", { desc = "Open yesterday" })
+vim.keymap.set("n", "<leader>om", "<cmd>ObsidianTomorrow<CR>", { desc = "Open tomorrow" })
+vim.keymap.set("n", "<leader>od", "<cmd>ObsidianDailies<CR>", { desc = "List dailies" })
+vim.keymap.set("n", "<leader>oT", "<cmd>ObsidianTemplate<CR>", { desc = "Insert template" })
+vim.keymap.set("n", "<leader>op", "<cmd>ObsidianPasteImg<CR>", { desc = "Paste image" })
+vim.keymap.set("n", "<leader>ow", "<cmd>ObsidianWorkspace<CR>", { desc = "Switch workspace" })
+vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { desc = "Rename note" })
+vim.keymap.set("v", "<leader>ol", "<cmd>ObsidianLink<CR>", { desc = "Link selection" })
+vim.keymap.set("v", "<leader>oe", "<cmd>ObsidianExtractNote<CR>", { desc = "Extract to note" })
+vim.keymap.set("v", "<leader>oN", "<cmd>ObsidianLinkNew<CR>", { desc = "New note from selection" })
+vim.keymap.set("n", "<leader>oL", "<cmd>ObsidianLinks<CR>", { desc = "List links" })
 
 -- Kulala REST client
 local function Kulala(action)

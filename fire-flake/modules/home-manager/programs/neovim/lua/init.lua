@@ -59,6 +59,7 @@ local lazy_plugins = {
   "plugins.ui.smartsplits",
   "plugins.search.spectre",
   "plugins.search.grapple",
+  "plugins.notes.obsidian",
   "plugins.completion.spider",
   "plugins.search.todocomments",
   "plugins.formatting.conform",
