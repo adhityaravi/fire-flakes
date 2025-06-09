@@ -79,5 +79,5 @@ for _, mod in ipairs(lazy_plugins) do
 end
 
 -- keymaps
-require("keymap")
+require("keymaps")
 

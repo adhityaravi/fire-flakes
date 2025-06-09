@@ -1,0 +1,6 @@
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qq", "<cmd>lua vim.diagnostic.setqflist()<CR><cmd>copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>qt", "<cmd>TodoQuickFix<CR>", { noremap = true, silent = true, desc = "Todo QuickFix" })
