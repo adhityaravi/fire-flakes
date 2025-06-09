@@ -1,38 +1,82 @@
 local obsidian = require("obsidian")
-
 local workspaces = vim.g.fireflake_obsidian_workspaces or {}
 
+-- works only with the obsidian vault template from voidashi - https://github.com/voidashi/obsidian-vault-template
 obsidian.setup({
-  workspaces = workspaces,
-  notes_subdir = "notes",
-  daily_notes = {
-    folder = "notes/dailies",
-    date_format = "%Y-%m-%d",
-    alias_format = "%B %-d, %Y",
-  },
-  completion = {
-    nvim_cmp = true,
-    min_chars = 2,
-  },
-  new_notes_location = "notes_subdir",
-  preferred_link_style = "wiki",
-  sort_by = "modified",
-  sort_reversed = true,
-  templates = {
-    folder = "templates",
-    date_format = "%Y-%m-%d",
-    time_format = "%H:%M",
-  },
-  picker = {
-    name = "telescope.nvim",
-  },
-  ui = {
-    enable = true,
-  },
+	workspaces = workspaces,
+
+	notes_subdir = "01 Personal/01.99 Fleeting",
+
+	daily_notes = {
+		folder = "01 Personal/01.01 Daily",
+		date_format = "%Y-%m-%d",
+		alias_format = "%B %-d, %Y",
+		default_tags = {},
+		template = "99 Meta/99.02 Templates/(TEMPLATE) Daily.md",
+	},
+
+	completion = {
+		nvim_cmp = true,
+		min_chars = 2,
+	},
+
+	-- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+	-- URL it will be ignored but you can customize this behavior here.
+	---@param url string
+	follow_url_func = function(url)
+		-- Open the URL in the default web browser.
+		-- vim.fn.jobstart({"xdg-open", url})  -- linux
+		vim.ui.open(url) -- need Neovim 0.10.0+
+	end,
+
+	-- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
+	-- file it will be ignored but you can customize this behavior here.
+	---@param img string
+	follow_img_func = function(img)
+		vim.fn.jobstart({ "xdg-open", img }) -- linux
+	end,
+
+	new_notes_location = "notes_subdir",
+
+	preferred_link_style = "markdown",
+
+	sort_by = "modified",
+	sort_reversed = true,
+
+	-- Set the maximum number of lines to read from notes on disk when performing certain searches.
+	search_max_lines = 1000,
+
+	templates = {
+		folder = "99 Meta/99.02 Templates",
+		date_format = "%Y-%m-%d",
+		time_format = "%H:%M",
+	},
+
+	picker = {
+		name = "telescope.nvim",
+	},
+	ui = {
+		enable = true,
+	},
+
+	-- Specify how to handle attachments.
+	attachments = {
+		-- The default folder to place images in via `:ObsidianPasteImg`.
+		-- If this is a relative path it will be interpreted as relative to the vault root.
+		-- You can always override this per image by passing a full path to the command instead of just a filename.
+		img_folder = "98 - Assets/Images", -- This is the default
+
+		-- customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
+		---@return string
+		img_name_func = function()
+			-- Prefix image names with timestamp.
+			return string.format("%s-", os.time())
+		end,
+	},
 })
 
 pcall(function()
-  require("telescope").load_extension("obsidian")
+	require("telescope").load_extension("obsidian")
 end)
 
 -- Keymaps
