@@ -11,6 +11,8 @@
     ../../../modules/home-manager/programs/neovim.nix
     ../../../modules/home-manager/programs/obsidian.nix
     ../../../modules/home-manager/programs/goose.nix
+    ../../../modules/home-manager/programs/fish.nix
+    ../../../modules/home-manager/programs/starship/starship.nix
     ../../../modules/home-manager/common.nix
   ];
 
@@ -81,4 +83,10 @@
     #  GOOSE_TEMPERATURE = "0.7";
     #};
   };
+
+  # Fish shell
+  custom.fish.enable = true;
+
+  # Starship prompt
+  custom.starship.enable = true;
 }
