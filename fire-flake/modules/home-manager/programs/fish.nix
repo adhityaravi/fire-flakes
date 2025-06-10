@@ -12,12 +12,13 @@ in {
     programs.fish = {
       enable = true;
       interactiveShellInit = ''
+        set -g fish_greeting ""
         if type -q fortune && type -q cowsay && type -q lolcat
-          fortune | cowsay -f tux | lolcat
+          fortune -a | cowsay
         end
       '';
     };
 
-    home.packages = with pkgs; [ fish fortune cowsay lolcat ];
+    home.packages = with pkgs; [ fish fortune cowsay ];
   };
 }
