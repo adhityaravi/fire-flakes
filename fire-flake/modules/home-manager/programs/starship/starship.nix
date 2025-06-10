@@ -2,7 +2,7 @@
 
 let
   cfg = config.custom.starship;
-  settings = import ./settings.nix;
+  settings = builtins.fromTOML (builtins.readFile ./settings.toml);
 in {
   options.custom.starship = {
     enable = lib.mkEnableOption "Enable the starship prompt";
