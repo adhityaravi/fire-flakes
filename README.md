@@ -87,7 +87,7 @@ This will:
 
 > ℹ️ **Info**
 >
-> Currently flake can be used only after cloning the repository locally. `nix` or `home-manager` commands cant be used because of a design flaw. I plan to fix it. See [Roadmap](https://github.com/adhityaravi/fire-flake/wiki#roadmap). 
+> Currently flake can be used only after cloning the repository locally. `nix` or `home-manager` commands cant be used because of a design flaw. I plan to fix it. 
 
 
 After installation:
@@ -125,7 +125,7 @@ home-manager --impure switch --flake .#default
 - Basic **Git** setup
 - SSH keys added to GitHub if configuring via a private repo 
 
-**Note:** This requirement list the minimum. There could be app level requirements for specific programs (e.g., `git`, `neovim`, etc.) for accessing the full feature-set. This will be documented in the [wiki](https://github.com/adhityaravi/fire-flake/wiki).
+**Note:** This requirement list the minimum. There could be app level requirements for specific programs (e.g., `git`, `neovim`, etc.) for accessing the full feature-set. This will be documented in the.
 
 ---
 
@@ -133,7 +133,4 @@ home-manager --impure switch --flake .#default
 
 Currently intended as a personal project for distro hopping and learning Nix. However, if you find it useful or want to contribute, feel free to open an issue or PR.
 I will write a proper contributing guide when I have time.
-
-
-[Wiki](https://github.com/adhityaravi/fire-flake/wiki)
 
