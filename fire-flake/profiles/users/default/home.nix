@@ -3,12 +3,13 @@
   lib,
   pkgs,
   userVars,
+  inputs,
   ...
 }: {
   imports = [
     ../../../modules/home-manager/programs/git.nix
     ../../../modules/home-manager/programs/kitty.nix
-    ../../../modules/home-manager/programs/neovim.nix
+    ../../../modules/home-manager/programs/nvchad.nix
     ../../../modules/home-manager/programs/obsidian.nix
     ../../../modules/home-manager/programs/goose.nix
     ../../../modules/home-manager/programs/fish.nix
@@ -46,8 +47,8 @@
     userEmail = userVars.git.email;
   };
 
-  # Neovim
-  custom.neovim = {
+  # NvChad Neovim
+  custom.nvchad = {
     enable = true;
 
     obsidianVaultPaths = userVars.obsidian.vaultPaths;

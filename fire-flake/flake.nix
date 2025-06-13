@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix4nvchad = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Optional: if disabled, an attempt will be made to load local configuration file from the vars directory. 
     # Note: Only ssh auth is tested.
     fire-flake-config = {
@@ -67,9 +72,9 @@
         ];
 
         extraSpecialArgs = {
-          inherit userVars nurpkgs;
+          inherit userVars nurpkgs inputs;
         };
-      };  
+      };
     };
   };
 }
