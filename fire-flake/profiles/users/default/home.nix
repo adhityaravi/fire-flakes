@@ -11,6 +11,7 @@
     ../../../modules/home-manager/programs/neovim.nix
     ../../../modules/home-manager/programs/obsidian.nix
     ../../../modules/home-manager/programs/goose.nix
+    ../../../modules/home-manager/programs/claude-code.nix
     ../../../modules/home-manager/programs/fish.nix
     ../../../modules/home-manager/programs/starship/starship.nix
     ../../../modules/home-manager/common.nix
@@ -81,6 +82,14 @@
     model = "claude-4-sonnet";
     #extraEnv = {
     #  GOOSE_TEMPERATURE = "0.7";
+    #};
+  };
+
+  # Claude Code CLI
+  custom.claudeCode = {
+    enable = true;
+    #extraEnv = {
+    #  CLAUDE_CODE_MODEL = "default";
     #};
   };
 
